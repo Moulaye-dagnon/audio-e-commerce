@@ -1,12 +1,55 @@
+import { useEffect, useState } from "react";
 import type { headPhoneEarPhoneSpeakerInterfaceDetail } from "../../Types";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
 import CardWithOnlyImageAndButton from "../CardWithOnlyImageAndButton/CardWithOnlyImageAndButton";
+import { useStoreCart } from "../../store/Cart/cart";
+import type { CartItem } from "../../Types/cart.type";
+import { CartSlice } from "../../redux/Cart/CartSlice";
+import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 function DetailProduitComponent({
   item,
 }: {
   item: headPhoneEarPhoneSpeakerInterfaceDetail;
 }) {
+  //   const carts = useStoreCart((state) => state.carts);
+  //   const addToCart = useStoreCart((state) => state.addToCart);
+  const [quantity, setQuantity] = useState(0);
+  const handleChangeQuantity = (action: "increment" | "decrement") => {
+    if (action === "increment") setQuantity((prev) => prev + 1);
+    if (action === "decrement")
+      setQuantity((prev) => (prev >= 1 ? prev - 1 : 1));
+  };
+  const dispatch = useAppDispatch();
+  const Cart = useAppSelector((state) => state.cart.carts);
+  const handleAddToCart = () => {
+    const itemToAdd: CartItem = {
+      id: item.id,
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      quantity: quantity,
+    };
+
+    // if (quantity > 0) {
+    //   addToCart(itemToAdd);
+    //   setQuantity(0); // Reset quantity after adding to cart
+    //   console.log("Adding to cart:", itemToAdd.name, "Quantity:", quantity);
+    //   console.log("itemToAdd to add:", { ...itemToAdd });
+
+    //   //setQuantity(1);
+    //   console.log("Current cart:", carts);
+    dispatch(CartSlice.actions.addToCart(itemToAdd));
+    console.log(CartSlice.actions.addToCart(itemToAdd));
+    console.log("Current cart:", Cart);
+
+    // {type: "counter/increment"}
+  };
+  useEffect(() => {
+    console.log("Cart updated:", Cart);
+  }, [Cart]);
+
   return (
     <div className=" py-14 px-6 md:px-10 lg:px-20 xl:px-40  rounded-lg">
       <div className="  text-center flex justify-between items-center max-md:flex-col gap-x-16   lg:gap-x-28">
@@ -47,11 +90,26 @@ function DetailProduitComponent({
           <span className=" text-lg font-bold "> $ {item?.price}</span>
           <div className="flex justify-center items-center gap-x-4">
             <div className=" bg-tertiaire-white flex justify-between items-center px-8 py-4 gap-x-7">
-              <span className=" opacity-50 ">-</span>
-              <span className=" text-sm">1</span>
-              <span className=" opacity-50">+</span>
+              <span
+                onClick={() => handleChangeQuantity("decrement")}
+                className=" opacity-50 "
+              >
+                -
+              </span>
+              <span className=" text-sm"> {quantity} </span>
+              <span
+                onClick={() => handleChangeQuantity("increment")}
+                className=" opacity-50"
+              >
+                +
+              </span>
             </div>
-            <ButtonComponent name="Ajouter" type="button" color="orange" />
+            <ButtonComponent
+              handleClick={handleAddToCart}
+              name="Ajouter"
+              type="button"
+              color="orange"
+            />
           </div>
         </div>
       </div>

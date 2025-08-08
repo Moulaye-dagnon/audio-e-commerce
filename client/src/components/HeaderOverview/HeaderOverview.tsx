@@ -41,18 +41,18 @@ function HeaderOverview({ title }: { title?: string }) {
       <motion.div
         initial={{
           opacity: 0,
-          x: "-100%",
+          y: "-100%",
           filter: "blur(30px)",
         }}
         whileInView={{
           opacity: 1,
-          x: 0,
+          y: 0,
           filter: "blur(0)",
         }}
         transition={{
           duration: 1,
         }}
-        className=" absolute top-1/2 left-1/2 -translate-1/2 lg:left-40 lg:-translate-x-0 text-primary-white w-[80%] max-w-82 md:max-w-95 mx-auto  text-center   lg:text-left "
+        className=" absolute top-1/2 left-1/2 -translate-1/2 lg:left-40 lg:-translate-x-0 text-primary-white w-[80%] max-w-82 md:max-w-95   text-center   lg:text-left "
       >
         <span className="text-sm opacity-50 ">Nouveau produit</span>
         <h1 className="text-5xl md:text-6xl font-bold lg:mt-4">

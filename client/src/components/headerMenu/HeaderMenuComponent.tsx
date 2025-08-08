@@ -10,8 +10,15 @@ import icon_earphone from "../../assets/shared/desktop/image-category-thumbnail-
 import icon_speaker from "../../assets/shared/desktop/image-category-thumbnail-speakers.png";
 import { useState } from "react";
 import clsx from "clsx";
+import { useAppSelector } from "../../redux/hooks";
 
-function HeaderMenuComponent() {
+function HeaderMenuComponent({
+  handleOpenCart,
+}: {
+  handleOpenCart: () => void;
+}) {
+  const TotalCart = useAppSelector((state) => state.cart.carts);
+
   const [openMenu, setOpenMenu] = useState(false);
   const handleClickMenu = () => setOpenMenu((c: boolean) => !c);
   return (
@@ -22,7 +29,7 @@ function HeaderMenuComponent() {
       transition={{ duration: 0.3 }}
       className={clsx(
         {
-          "max-lg:bg-primary-black/35 absolute max-lg:inset-0":
+          "max-lg:bg-primary-black/35 absolute max-lg:inset-0 z-20":
             openMenu == true,
         },
         " lg:static "
@@ -61,6 +68,7 @@ function HeaderMenuComponent() {
           </ul>
         </div>
         <motion.div
+          onClick={handleOpenCart}
           initial={{
             rotate: 360,
           }}
@@ -69,8 +77,14 @@ function HeaderMenuComponent() {
             rotate: 0,
           }}
           transition={{ duration: 1 }}
+          className="relative"
         >
           <LuShoppingCart />
+          {TotalCart.length > 0 && (
+            <span className=" w-5  text-center text-[10px] rounded-full bg-primary-orange text-primary-white absolute -top-4 right-0  ">
+              {TotalCart.length}
+            </span>
+          )}
         </motion.div>
       </div>
       <AnimatePresence>

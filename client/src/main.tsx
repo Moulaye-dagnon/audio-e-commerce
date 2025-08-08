@@ -10,10 +10,14 @@ const queryClient = new QueryClient({
     },
   },
 });
+import { Provider } from "react-redux";
+import { store } from "./redux/store.ts";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </QueryClientProvider>
   </StrictMode>
 );
