@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import CardItem from "../Card-Item-Component/CardItem";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
@@ -7,14 +6,13 @@ import { allRemoveAction } from "../../redux/Cart/CartSlice";
 export function CartDropdown() {
   const TotalCart = useAppSelector((state) => state.cart.carts);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.4 }}
-      className=" absolute top-20 md:top-22 pt-10 bottom-0 inset-x-0 z-10  bg-primary-black/40 backdrop-blur-sm flex md:justify-end md:px-10  "
+      className=" absolute no-doc-scrool top-20 md:top-22 pt-10 bottom-0 inset-x-0 z-10  bg-primary-black/40 backdrop-blur-sm flex md:justify-end md:px-10  "
     >
       <div className=" flex w-[90%] max-w-94.5 mx-auto md:mx-0  h-115  flex-col bg-primary-white rounded-lg p-4 ">
         <div className="mb-4  flex justify-between items-center">
@@ -48,6 +46,7 @@ export function CartDropdown() {
           type="button"
           name=" Aller a la caisse"
           color="orange"
+          url="/checkout"
         />
       </div>
     </motion.div>

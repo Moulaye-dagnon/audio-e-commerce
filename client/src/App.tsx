@@ -9,6 +9,7 @@ import HeadphoneDetail from "./page/headphoneDetail/HeadphoneDetail";
 import SpeakerDetail from "./page/speakerDetail/SpeakerDetail";
 import EarphoneDetail from "./page/earphoneDetail/EarphoneDetail";
 import LoginComponent from "./page/login/LoginComponent";
+import CheckOut from "./page/checkout/CheckOut";
 
 function App() {
   const root = createBrowserRouter([
@@ -43,6 +44,10 @@ function App() {
         {
           path: "earphone/:slug",
           element: <EarphoneDetail />,
+        },
+        {
+          path: "checkout",
+          element: <CheckOut />,
         },
       ],
     },

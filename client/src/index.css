@@ -35,6 +35,6 @@
   font-display: swap;
   src: url("../src/Font/Manrope-Bold.ttf") format("truetype");
 }
-
-body {
+:root:has(.no-doc-scrool) {
+  overflow: hidden;
 }

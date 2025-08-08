@@ -1,12 +1,10 @@
-import type { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import type { ChangeEventHandler } from "react";
 
 interface InputProps {
   label: string;
   name: string;
   id: string;
-  type: HTMLInputTypeAttribute;
   value: string | number;
-  placeholder: string | undefined;
   handleChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -14,8 +12,6 @@ function InputRadioComponent({
   label,
   name,
   id,
-  placeholder,
-  type,
   value,
   handleChange,
 }: InputProps) {
@@ -27,8 +23,7 @@ function InputRadioComponent({
       <input
         id={id}
         name={name}
-        type={type}
-        placeholder={placeholder}
+        type="radio"
         value={value}
         onChange={handleChange}
         required

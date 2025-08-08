@@ -20,8 +20,8 @@ export function InputComponent({
   handleChange,
 }: InputProps) {
   return (
-    <div className={`  `}>
-      <label htmlFor={id} className=" text-xs font-bold  ">
+    <div className="my-6  ">
+      <label htmlFor={id} className=" text-xs font-bold   ">
         {label}
       </label>
       <input
@@ -32,7 +32,7 @@ export function InputComponent({
         value={value}
         onChange={handleChange}
         required
-        className=" block w-full py-4.5 pl-6 border border-input-border focus:outline-primary-orange rounded-md cursor-pointer caret-primary-orange "
+        className=" mt-2.5 block w-full py-4.5 pl-6 border border-input-border focus:outline-primary-orange rounded-md cursor-pointer caret-primary-orange "
       />
     </div>
   );
