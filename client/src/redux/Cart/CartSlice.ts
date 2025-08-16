@@ -6,14 +6,15 @@ import {
   deleteToCart,
   incrementQuantity,
 } from "../../store/Cart/cart.utils";
-import { number } from "motion/react";
 
 interface CartStore {
   carts: CartItem[];
+  hidden: boolean;
 }
 
 const initialState: CartStore = {
   carts: [],
+  hidden: true,
 };
 
 export const CartSlice = createSlice({
@@ -38,6 +39,15 @@ export const CartSlice = createSlice({
     ) => {
       state.carts = decrementQuantity(state.carts, action.payload.id);
     },
+    OpenCartAction: (state) => {
+      state.hidden = false;
+    },
+    HideCartAction: (state) => {
+      state.hidden = true;
+    },
+    ToggleCardAction: (state) => {
+      state.hidden = !state.hidden;
+    },
   },
 });
 
@@ -47,6 +57,9 @@ export const {
   incrementQuantityAction,
   decremenentQuantityAction,
   allRemoveAction,
+  OpenCartAction,
+  HideCartAction,
+  ToggleCardAction,
 } = CartSlice.actions;
 
 export default CartSlice.reducer;

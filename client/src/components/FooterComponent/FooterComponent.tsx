@@ -11,16 +11,17 @@ function FooterComponent() {
         <div className="">
           <ul className="flex justify-between flex-col md:flex-row  items-center   gap-y-4 md:gap-y-0 md:gap-x-10 ">
             <li className="hover:text-primary-orange">
-              <NavLink to={"/"}>Accueil</NavLink>
+              <NavLink to={"/#header"}>Accueil</NavLink>
             </li>
             <li className="hover:text-primary-orange">
-              <NavLink to={"/headphone"}>Casque</NavLink>
+              {/* <NavLink to={"/headphone#header"}>Casque</NavLink> */}
+              <a href="/headphone#header">Casque</a>
             </li>
             <li className="hover:text-primary-orange">
-              <NavLink to={"/speaker"}>Haut parleur</NavLink>
+              <NavLink to={"/speaker#header"}>Haut parleur</NavLink>
             </li>
             <li className="hover:text-primary-orange">
-              <NavLink to={"/earphone"}>Écouteurs</NavLink>
+              <NavLink to={"/earphone#header"}>Écouteurs</NavLink>
             </li>
           </ul>
         </div>

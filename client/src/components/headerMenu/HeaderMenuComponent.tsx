@@ -10,21 +10,21 @@ import icon_earphone from "../../assets/shared/desktop/image-category-thumbnail-
 import icon_speaker from "../../assets/shared/desktop/image-category-thumbnail-speakers.png";
 import { useState } from "react";
 import clsx from "clsx";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { OpenCartAction } from "../../redux/Cart/CartSlice";
 
-function HeaderMenuComponent({
-  handleOpenCart,
-}: {
-  handleOpenCart: () => void;
-}) {
+function HeaderMenuComponent() {
   const TotalCart = useAppSelector((state) => state.cart.carts);
+  const dispatch = useAppDispatch();
 
   const [openMenu, setOpenMenu] = useState(false);
   const handleClickMenu = () => setOpenMenu((c: boolean) => !c);
   return (
     <motion.div
+    
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
       className={clsx(
@@ -68,7 +68,7 @@ function HeaderMenuComponent({
           </ul>
         </div>
         <motion.div
-          onClick={handleOpenCart}
+          onClick={() => dispatch(OpenCartAction())}
           initial={{
             rotate: 360,
           }}

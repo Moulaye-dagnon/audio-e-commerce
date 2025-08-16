@@ -4,7 +4,16 @@ import {
   incrementQuantityAction,
 } from "../../redux/Cart/CartSlice";
 
-function CardItem({ id }: { id: string }) {
+function CardItem({
+  id,
+  PageType,
+}: {
+  id: string;
+  PageType:
+    | "checkoutPage"
+    | "checkoutSuccessComponent"
+    | "cartDropdownComponent";
+}) {
   const dispatch = useAppDispatch();
   const Item = useAppSelector((state) =>
     state.cart.carts.find((item) => item.id === id)
@@ -22,21 +31,29 @@ function CardItem({ id }: { id: string }) {
         <div className=" text-base font-bold">{Item?.name.slice(0, 13)}</div>
         <div className="text-sm text-primary-black/50">$ {Item?.price}</div>
       </div>
-      <div className=" flex-none w-32  bg-tertiaire-white flex justify-between items-center px-3 py-2 gap-x-3">
-        <span
-          onClick={() => handleChangeQuantity("decrement")}
-          className=" opacity-50 "
-        >
-          -
-        </span>
-        <span className=" text-sm"> {Item?.quantity} </span>
-        <span
-          onClick={() => handleChangeQuantity("increment")}
-          className=" opacity-50"
-        >
-          +
-        </span>
-      </div>
+      {PageType === "cartDropdownComponent" && (
+        <div className=" flex-none w-32  bg-tertiaire-white flex justify-between items-center px-3 py-2 gap-x-3">
+          <span
+            onClick={() => handleChangeQuantity("decrement")}
+            className=" opacity-50 cursor-pointer "
+          >
+            -
+          </span>
+          <span className=" text-sm"> {Item?.quantity} </span>
+          <span
+            onClick={() => handleChangeQuantity("increment")}
+            className=" opacity-50 cursor-pointer"
+          >
+            +
+          </span>
+        </div>
+      )}
+
+      {PageType === "checkoutPage" && (
+        <div className="  bg-tertiaire-white px-3 py-2 ">
+          x<span className=" text-sm"> {Item?.quantity} </span>
+        </div>
+      )}
     </div>
   );
 }

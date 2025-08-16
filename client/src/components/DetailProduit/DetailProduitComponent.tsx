@@ -46,9 +46,9 @@ function DetailProduitComponent({
 
     // {type: "counter/increment"}
   };
-  useEffect(() => {
-    console.log("Cart updated:", Cart);
-  }, [Cart]);
+  //   useEffect(() => {
+  //     console.log("Cart updated:", Cart);
+  //   }, [Cart]);
 
   return (
     <div className=" py-14 px-6 md:px-10 lg:px-20 xl:px-40  rounded-lg">
@@ -92,14 +92,14 @@ function DetailProduitComponent({
             <div className=" bg-tertiaire-white flex justify-between items-center px-8 py-4 gap-x-7">
               <span
                 onClick={() => handleChangeQuantity("decrement")}
-                className=" opacity-50 "
+                className=" opacity-50 cursor-pointer "
               >
                 -
               </span>
               <span className=" text-sm"> {quantity} </span>
               <span
                 onClick={() => handleChangeQuantity("increment")}
-                className=" opacity-50"
+                className=" opacity-50 cursor-pointer "
               >
                 +
               </span>

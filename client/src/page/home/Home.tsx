@@ -126,7 +126,9 @@ function Home() {
             </picture>
           </div>
           <div className="lg:flex-none lg:w-[49.5%] w-full pl-6 lg:pl-25 bg-tertiaire-white rounded-lg py-10 md:flex md:flex-col md:justify-center md:items-start">
-            <h3 className=" text-[28px] max-w-60 font-bold  text-primary-black mb-8 uppercase">
+            <h3
+              className=" text-[28px] max-w-60 font-bold  text-primary-black mb-8 uppercase"
+            >
               Écouteurs YX1
             </h3>
             <ButtonComponent

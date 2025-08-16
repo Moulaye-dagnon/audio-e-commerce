@@ -21,6 +21,7 @@ function CheckOut() {
     eMoneyNumber: "",
     eMoneyPin: "",
   });
+  const [ConfirmAchat, setConfirmAchat] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValue((prev) => ({ ...prev, [name]: value }));
@@ -29,13 +30,14 @@ function CheckOut() {
     e.preventDefault();
     console.log(inputValue);
   };
+
   const TotalCart = useAppSelector((state) => state.cart.carts);
 
   return (
-    <div className=" bg-tertiaire-white py-4  px-6 md:px-10 lg:px-20 xl:px-40">
+    <div className=" relative bg-tertiaire-white py-4  px-6 md:px-10 lg:px-20 xl:px-40">
       <h3
         onClick={() => navigate(-1)}
-        className=" mb-6 text-left text-primary-black/50"
+        className=" mb-6 text-left text-primary-black/50 cursor-pointer"
       >
         Retourner
       </h3>
@@ -191,7 +193,7 @@ function CheckOut() {
           {TotalCart.length ? (
             <div className=" mb-4 flex h-72 w-full flex-col overflow-auto">
               {TotalCart.map((item) => (
-                <CardItem key={item.id} id={item.id} />
+                <CardItem key={item.id} id={item.id} PageType="checkoutPage" />
               ))}
             </div>
           ) : (
@@ -231,10 +233,11 @@ function CheckOut() {
             type="submit"
             name=" Continuer et payer"
             color="orange"
+            handleClick={() => setConfirmAchat(true)}
           />
         </div>
       </form>
-      <CheckOutSuccessComponent />
+      {ConfirmAchat && <CheckOutSuccessComponent />}
     </div>
   );
 }

@@ -15,7 +15,7 @@ function MenuItemCard({ title, imgScr, url, handleClick }: MenuItemCardProps) {
       <div className=" w-30 md:w-36 absolute -top-1/5 left-1/2  -translate-x-1/2">
         <img src={imgScr} alt="" />
       </div>
-      <button className=" flex justify-center items-center gap-x-2">
+      <button className=" hover:text-primary-orange flex justify-center items-center gap-x-2">
         <NavLink onClick={handleClick} to={url}>
           Voir
         </NavLink>

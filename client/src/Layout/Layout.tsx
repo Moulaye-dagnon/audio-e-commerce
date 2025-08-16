@@ -8,20 +8,19 @@ import FooterComponent from "../components/FooterComponent/FooterComponent";
 import CardWithImagePerson from "../components/CardWithImagePerson/CardWithImagePerson";
 import MenuItemCard from "../components/menuItemCard/MenuItemCard";
 import { CartDropdown } from "../components/Cart-Component/Cart-Dropdown-Component";
-import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import clsx from "clsx";
+import { useAppSelector } from "../redux/hooks";
 function Layout() {
-  const [openCart, setOpenCart] = useState(false);
-  const handleOpenCart = () => setOpenCart((prev) => !prev);
+  const HideCard = useAppSelector((state) => state.cart.hidden);
   const location = useLocation();
 
   return (
     <div className=" relative  mx-auto ">
-      <nav>
-        <HeaderMenuComponent handleOpenCart={handleOpenCart} />
+      <nav id="header">
+        <HeaderMenuComponent />
       </nav>
-      <AnimatePresence>{openCart && <CartDropdown />}</AnimatePresence>
+      <AnimatePresence>{!HideCard && <CartDropdown />}</AnimatePresence>
       <Outlet />
       <footer
         className={clsx({

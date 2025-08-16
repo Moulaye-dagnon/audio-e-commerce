@@ -1,12 +1,13 @@
 import CardWithImageSpeakers from "../../components/CardWithImageSpeakers/CardWithImageSpeakers";
 import HeaderOverview from "../../components/HeaderOverview/HeaderOverview";
+import LoaderComponent from "../../components/loader/LoaderComponent";
 import useGetEarphones from "../../hooks/Earphone/useGetEarphones";
 import type { headPhoneEarPhoneSpeakerInterface } from "../../Types";
 
 function Earphone() {
   const { isLoading, isError, data } = useGetEarphones();
 
-  if (isLoading) return <div>Chargement...</div>;
+  if (isLoading) return <LoaderComponent/>
   if (isError) return <div>error </div>;
   return (
     <>
@@ -22,6 +23,7 @@ function Earphone() {
             srcDesktop={item.image.desktop}
             HomePage={false}
             New={item.new}
+            url={`/earphone/${item.slug}`}
           />
         ))}
       </div>

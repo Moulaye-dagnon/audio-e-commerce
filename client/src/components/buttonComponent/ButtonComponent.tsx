@@ -5,10 +5,12 @@ import { NavLink } from "react-router";
 interface ButtonProps {
   type: "button" | "submit" | "reset";
   handleClick?: MouseEventHandler<HTMLButtonElement>;
+  handleClickwithUrl?: MouseEventHandler<HTMLAnchorElement>;
   name: string;
   style?: CSSProperties;
   color: "orange" | "black";
   url?: string;
+  disabled?: boolean;
 }
 export default function ButtonComponent({
   type,
@@ -17,20 +19,24 @@ export default function ButtonComponent({
   name,
   style = {},
   url,
+  handleClickwithUrl,
+  disabled = false,
 }: ButtonProps) {
   if (url)
     return (
       <NavLink
         style={style}
         to={url}
+        onClick={handleClickwithUrl}
         className={clsx(
           {
-            "bg-primary-orange border border-primary-orange text-primary-white hover:bg-secondary-orange  ":
+            "  bg-primary-orange border border-primary-orange text-primary-white hover:bg-secondary-orange  ":
               color == "orange",
             " bg-primary-white border border-primary-black text-primary-black hover:bg-primary-black hover:text-primary-white ":
-              color == "black",
+              color == "black"
+            
           },
-          "px-8 py-4 inline-block cursor-pointer "
+          "px-8 py-4 inline-block cursor-pointer text-center "
         )}
       >
         {name}
@@ -41,6 +47,7 @@ export default function ButtonComponent({
       type={type}
       style={style}
       onClick={handleClick}
+      disabled={disabled}
       className={clsx(
         {
           "bg-primary-orange border border-primary-orange text-primary-white hover:bg-secondary-orange  ":
