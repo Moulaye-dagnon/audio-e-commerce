@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import type { headPhoneEarPhoneSpeakerInterfaceDetail } from "../../Types";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
 import CardWithOnlyImageAndButton from "../CardWithOnlyImageAndButton/CardWithOnlyImageAndButton";
-import { useStoreCart } from "../../store/Cart/cart";
 import type { CartItem } from "../../Types/cart.type";
 import { CartSlice } from "../../redux/Cart/CartSlice";
-import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 function DetailProduitComponent({

@@ -1,20 +1,21 @@
-import {motion} from 'motion/react'
-function LoaderComponent() {
+import { motion, type Transition } from "motion/react"; // ✅ Corriger l'import
 
-  const loadingContainer = {
+const LoaderComponent: React.FC = () => {
+  const loadingContainer: React.CSSProperties = {
     width: "4rem",
     height: "4rem",
     display: "flex",
     justifyContent: "space-around",
   };
 
-  const loadingCircle = {
+  const loadingCircle: React.CSSProperties = {
     display: "block",
     width: "1rem",
     height: "1rem",
     backgroundColor: "#3A36DB",
     borderRadius: "0.5rem",
   };
+
   const loadingContainerVariants = {
     start: {
       transition: {
@@ -36,11 +37,14 @@ function LoaderComponent() {
       y: "60%",
     },
   };
-  const loadingCircleTransition = {
-  duration: 0.4,
-  yoyo: Infinity,
-  ease: "easeInOut",
-};
+
+  const loadingCircleTransition: Transition = {
+    duration: 0.4,
+    repeat: Infinity, // ✅ remplacer yoyo par repeat
+    repeatType: "reverse", // ✅ pour effet aller-retour
+    ease: "easeInOut",
+  };
+
   return (
     <div>
       {/* Background overlay */}
@@ -53,27 +57,19 @@ function LoaderComponent() {
             initial="start"
             animate="end"
           >
-            <motion.span
-              style={loadingCircle}
-              variants={loadingCircleVariants}
-              transition={loadingCircleTransition}
-            ></motion.span>
-            <motion.span
-              style={loadingCircle}
-              variants={loadingCircleVariants}
-              transition={loadingCircleTransition}
-            ></motion.span>
-            <motion.span
-              style={loadingCircle}
-              variants={loadingCircleVariants}
-              transition={loadingCircleTransition}
-            ></motion.span>
+            {[...Array(3)].map((_, index) => (
+              <motion.span
+                key={index}
+                style={loadingCircle}
+                variants={loadingCircleVariants}
+                transition={loadingCircleTransition}
+              />
+            ))}
           </motion.div>
         </div>
       </div>
     </div>
   );
 };
-
 
 export default LoaderComponent;
