@@ -2,10 +2,14 @@ import CardWithImageSpeakers from "../../components/CardWithImageSpeakers/CardWi
 import useGetHeadphones from "../../hooks/Headphone/useGetHeadphones";
 import type { headPhoneEarPhoneSpeakerInterface } from "../../Types";
 import HeaderOverview from "../../components/HeaderOverview/HeaderOverview";
+import { useEffect } from "react";
+import { scrollUpFunct } from "../../utils/scrollUpFunct";
 
-function Headphone() {
+const Headphone = () => {
   const { isLoading, isError, data } = useGetHeadphones();
-
+  useEffect(() => {
+    scrollUpFunct();
+  }, [data]);
   if (isLoading) return <div>Chargement...</div>;
   if (isError) return <div>error </div>;
   return (
@@ -47,6 +51,6 @@ function Headphone() {
       </div>
     </>
   );
-}
+};
 
 export default Headphone;

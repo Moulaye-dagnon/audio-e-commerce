@@ -1,7 +1,7 @@
 import person_mobile from "../../assets/shared/mobile/image-best-gear.jpg";
 import person_tablet from "../../assets/shared/tablet/image-best-gear.jpg";
 import person_desktop from "../../assets/shared/desktop/image-best-gear.jpg";
-
+import { motion } from "motion/react";
 // interface CardWithImagePersonProps {
 //   title: string;
 //   description: string;
@@ -10,8 +10,14 @@ import person_desktop from "../../assets/shared/desktop/image-best-gear.jpg";
 
 function CardWithImagePerson() {
   return (
-    <div className="mx-6 md:mx-10 lg:mx-20 xl:mx-40 ">
-      <div className="lg:flex lg:justify-between lg:items-center lg:flex-row-reverse text-primary-black">
+    <div className="mx-6 md:mx-10 lg:mx-20 xl:mx-40  ">
+      <motion.div
+        initial={{ x: "-100%" }}
+        whileInView={{ x: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="lg:flex lg:justify-between lg:items-center lg:flex-row-reverse text-primary-black"
+      >
         <picture>
           <source
             media="(min-width:1024px )"
@@ -25,7 +31,14 @@ function CardWithImagePerson() {
             alt="person for mobile"
           />
         </picture>
-        <div className=" text-center lg:max-w-110 lg:text-left ">
+
+        <motion.div
+          initial={{ y: "100%" }}
+          whileInView={{ y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className=" text-center lg:max-w-110 lg:text-left "
+        >
           <h3 className=" uppercase text-[28px] md:text-[40] font-bold  my-8">
             Vous apporter le <br />
             <span className=" text-primary-orange">meilleur</span> équipement
@@ -42,8 +55,8 @@ function CardWithImagePerson() {
             font de l'audiophile le meilleur endroit pour acheter votre
             équipement audio portable.
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

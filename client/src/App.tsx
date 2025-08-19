@@ -1,4 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router";
 import "./App.css";
 import Layout from "./Layout/Layout";
 import Home from "./page/home/Home";
@@ -13,54 +18,24 @@ import CheckOut from "./page/checkout/CheckOut";
 import NotFoundPage from "./page/NotFound/NotFoundPage";
 
 function App() {
-  const root = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-        {
-          path: "headphone",
-          element: <Headphone />,
-        },
-        {
-          path: "speaker",
-          element: <Speaker />,
-        },
-        {
-          path: "earphone",
-          element: <Earphone />,
-        },
-        {
-          path: "headphone/:slug",
-          element: <HeadphoneDetail />,
-        },
-        {
-          path: "speaker/:slug",
-          element: <SpeakerDetail />,
-        },
-        {
-          path: "earphone/:slug",
-          element: <EarphoneDetail />,
-        },
-        {
-          path: "checkout",
-          element: <CheckOut />,
-        },
-      ],
-    },
-    {
-      path: "/login",
-      element: <LoginComponent />,
-    },
-    {
-      path: "*",
-      element: <NotFoundPage />,
-    },
-  ]);
+  const root = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="headphone" element={<Headphone />} />
+          <Route path="speaker" element={<Speaker />} />
+          <Route path="earphone" element={<Earphone />} />
+          <Route path="headphone/:slug" element={<HeadphoneDetail />} />
+          <Route path="speaker/:slug" element={<SpeakerDetail />} />
+          <Route path="earphone/:slug" element={<EarphoneDetail />} />
+          <Route path="checkout" element={<CheckOut />} />
+        </Route>
+        <Route path="/login" element={<LoginComponent />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </>
+    )
+  );
 
   return <RouterProvider router={root} />;
 }

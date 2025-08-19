@@ -9,9 +9,13 @@ interface CardWithImageFullCardProps {
 }
 function CardWithImageFullCard({ title, url }: CardWithImageFullCardProps) {
   return (
-    <div
+    <motion.div
+      className=" relative  rounded-lg mb-8 overflow-hidden"
+      initial={{ x: "100%", opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
       id="CardWithImageFullCard-container"
-      className=" relative w-full  rounded-lg mb-8 overflow-hidden"
     >
       <picture>
         <source
@@ -31,7 +35,7 @@ function CardWithImageFullCard({ title, url }: CardWithImageFullCardProps) {
           transition={{
             duration: 1,
           }}
-          className=" w-full max-h-full object-center  object-cover   "
+          className=" w-full  object-center  object-cover   "
           src={image_speaker_zx7_mobile}
           alt="person for mobile"
         />
@@ -63,7 +67,7 @@ function CardWithImageFullCard({ title, url }: CardWithImageFullCardProps) {
           color="black"
         />
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -11,6 +11,7 @@ interface ButtonProps {
   color: "orange" | "black";
   url?: string;
   disabled?: boolean;
+  isAdded?: boolean;
 }
 export default function ButtonComponent({
   type,
@@ -21,6 +22,7 @@ export default function ButtonComponent({
   url,
   handleClickwithUrl,
   disabled = false,
+  isAdded,
 }: ButtonProps) {
   if (url)
     return (
@@ -33,8 +35,8 @@ export default function ButtonComponent({
             "  bg-primary-orange border border-primary-orange text-primary-white hover:bg-secondary-orange  ":
               color == "orange",
             " bg-primary-white border border-primary-black text-primary-black hover:bg-primary-black hover:text-primary-white ":
-              color == "black"
-            
+              color == "black",
+            "bg-emerald-200 text-emerald-950": isAdded === true,
           },
           "px-8 py-4 inline-block cursor-pointer text-center "
         )}
@@ -50,6 +52,7 @@ export default function ButtonComponent({
       disabled={disabled}
       className={clsx(
         {
+          "bg-emerald-200 text-emerald-950": isAdded === true,
           "bg-primary-orange border border-primary-orange text-primary-white hover:bg-secondary-orange  ":
             color == "orange",
           " bg-primary-white border border-primary-black text-primary-black hover:bg-primary-black hover:text-primary-white ":

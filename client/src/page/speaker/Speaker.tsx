@@ -1,12 +1,16 @@
+import { useEffect } from "react";
 import CardWithImageSpeakers from "../../components/CardWithImageSpeakers/CardWithImageSpeakers";
 import HeaderOverview from "../../components/HeaderOverview/HeaderOverview";
 
 import useGetSpeakers from "../../hooks/Speaker/useGetSpeakers";
 import type { headPhoneEarPhoneSpeakerInterface } from "../../Types";
+import { scrollUpFunct } from "../../utils/scrollUpFunct";
 
 function Speaker() {
   const { isLoading, isError, data } = useGetSpeakers();
-
+  useEffect(() => {
+    scrollUpFunct();
+  }, [data]);
   if (isLoading) return <div>Chargement...</div>;
   if (isError) return <div>error </div>;
   return (

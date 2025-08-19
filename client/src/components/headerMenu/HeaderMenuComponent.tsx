@@ -21,7 +21,6 @@ function HeaderMenuComponent() {
   const handleClickMenu = () => setOpenMenu((c: boolean) => !c);
   return (
     <motion.div
-    
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -29,10 +28,9 @@ function HeaderMenuComponent() {
       transition={{ duration: 0.3 }}
       className={clsx(
         {
-          "max-lg:bg-primary-black/35 absolute max-lg:inset-0 z-20":
-            openMenu == true,
+          "max-lg:bg-primary-black/35  max-lg:inset-0 ": openMenu == true,
         },
-        " lg:static "
+        " fixed inset-x-0 top-0 z-30   "
       )}
     >
       <div className=" w-full px-6 md:px-10 lg:px-40  flex justify-between items-center border-b border-primary-white/50 py-9 text-primary-white font-bold bg-primary-black">

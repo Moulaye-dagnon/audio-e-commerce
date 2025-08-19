@@ -1,11 +1,12 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import type { headPhoneEarPhoneSpeakerInterfaceDetail } from "../../Types";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
 import CardWithOnlyImageAndButton from "../CardWithOnlyImageAndButton/CardWithOnlyImageAndButton";
 import type { CartItem } from "../../Types/cart.type";
 import { CartSlice } from "../../redux/Cart/CartSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-
+import { useAppDispatch } from "../../redux/hooks";
+import { motion } from "motion/react";
+import { scrollUpFunct } from "../../utils/scrollUpFunct";
 function DetailProduitComponent({
   item,
 }: {
@@ -13,14 +14,14 @@ function DetailProduitComponent({
 }) {
   //   const carts = useStoreCart((state) => state.carts);
   //   const addToCart = useStoreCart((state) => state.addToCart);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
   const handleChangeQuantity = (action: "increment" | "decrement") => {
     if (action === "increment") setQuantity((prev) => prev + 1);
     if (action === "decrement")
       setQuantity((prev) => (prev >= 1 ? prev - 1 : 1));
   };
   const dispatch = useAppDispatch();
-  const Cart = useAppSelector((state) => state.cart.carts);
   const handleAddToCart = () => {
     const itemToAdd: CartItem = {
       id: item.id,
@@ -30,28 +31,28 @@ function DetailProduitComponent({
       quantity: quantity,
     };
 
-    // if (quantity > 0) {
-    //   addToCart(itemToAdd);
-    //   setQuantity(0); // Reset quantity after adding to cart
-    //   console.log("Adding to cart:", itemToAdd.name, "Quantity:", quantity);
-    //   console.log("itemToAdd to add:", { ...itemToAdd });
-
-    //   //setQuantity(1);
-    //   console.log("Current cart:", carts);
     dispatch(CartSlice.actions.addToCart(itemToAdd));
-    console.log(CartSlice.actions.addToCart(itemToAdd));
-    console.log("Current cart:", Cart);
+    setIsAdded(true);
 
-    // {type: "counter/increment"}
+    setTimeout(() => {
+      setIsAdded(false);
+    }, 1000);
+    setQuantity(1);
   };
-  //   useEffect(() => {
-  //     console.log("Cart updated:", Cart);
-  //   }, [Cart]);
+  useEffect(() => {
+    scrollUpFunct();
+  }, [item]);
 
   return (
-    <div className=" py-14 px-6 md:px-10 lg:px-20 xl:px-40  rounded-lg">
+    <div className=" pt-40 pb-14 px-6 md:px-10 lg:px-20 xl:px-40  rounded-lg">
       <div className="  text-center flex justify-between items-center max-md:flex-col gap-x-16   lg:gap-x-28">
-        <div className="bg-tertiaire-white rounded-lg  ">
+        <motion.div
+          initial={{ scale: 0, rotate: 0 }}
+          whileInView={{ scale: 1, rotate: 720 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="bg-tertiaire-white rounded-lg  "
+        >
           <picture>
             {item?.image.desktop && (
               <source
@@ -73,8 +74,14 @@ function DetailProduitComponent({
               alt="produit"
             />
           </picture>
-        </div>
-        <div className=" max-w-[80%] flex flex-col justify-center items-center gap-y-8 mt-8 md:mt-0 md:items-start   ">
+        </motion.div>
+        <motion.div
+          initial={{ scale: 0.7, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          className=" max-w-[80%] flex flex-col justify-center items-center gap-y-8 mt-8 md:mt-0 md:items-start   "
+        >
           {item?.new && (
             <span className=" text-primary-orange text-sm">
               Nouveau produit
@@ -104,12 +111,53 @@ function DetailProduitComponent({
             </div>
             <ButtonComponent
               handleClick={handleAddToCart}
-              name="Ajouter"
+              name={isAdded ? "Ajouté" : "Ajouter"}
               type="button"
               color="orange"
+              isAdded={isAdded}
             />
+            {isAdded && (
+              <motion.div
+                className="fixed top-0 right-0 lg:right-15 md rounded-md bg-gray-light  opacity-50 z-32"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [1, 1, 0],
+                  scale: 0.2,
+                  transition: {
+                    duration: 1.5,
+                    ease: "easeInOut",
+                  },
+                }}
+                transition={{
+                  duration: 3,
+                  ease: "easeInOut",
+                }}
+              >
+                <picture>
+                  {item?.image.desktop && (
+                    <source
+                      media="(min-width:1024px )"
+                      srcSet={item?.image.desktop}
+                      sizes=""
+                    />
+                  )}
+                  {item?.image.tablet && (
+                    <source
+                      media="(min-width:768px )"
+                      srcSet={item?.image.tablet}
+                      sizes=""
+                    />
+                  )}
+                  <img
+                    src={item?.image.mobile}
+                    alt="product image"
+                    className="w-35 h-35 md:h-48 lg:h-35"
+                  />
+                </picture>
+              </motion.div>
+            )}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className=" flex max-lg:flex-col lg:gap-x-35 max-md:gap-y-20  mt-20 lg:mt-57  ">

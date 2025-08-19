@@ -34,14 +34,14 @@
 //     }
 //   };
 
-//   return (
+//    return (
 //     <div>
 //       <Logo />
 //       <div className="max-w-[327px] md:max-w-[400px]  mx-auto bg-semi-dark-blue rounded-xl p-6 md:p-8">
 //         <form onSubmit={handleSubmit}>
 //           <div className="text-4xl  mb-4">Sign Up</div>
 //           <InputComponent
-//             emptyValue={inputEmpty}
+//            // emptyValue={inputEmpty}
 //             type={"email"}
 //             name={"email"}
 //             id={"email"}

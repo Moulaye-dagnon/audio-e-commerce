@@ -1,28 +1,28 @@
-import { Link } from "react-router";
-import { InputComponent } from "../../components/InputComponent/InputComponent";
 
 function LoginComponent() {
   return (
     <div>
-      {/* // <Logo /> */}
+      {/* <Logo />
       <div className="max-w-[327px] md:max-w-[400px]  mx-auto bg-semi-dark-blue rounded-xl p-6 md:p-8">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="text-4xl  mb-4">Login</div>
           <InputComponent
-            id="test"
-            type="text"
-            placeholder="nom"
-            value={"nom"}
-            name="test"
-            label="nom"
+            emptyValue={inputEmpty}
+            type="email"
+            name="email"
+            id="email"
+            value={valueInput.email}
+            OnChange={handleOnchange}
+            placeholder={"Email address"}
           />
           <InputComponent
-            id="test"
-            type="text"
-            placeholder="nom"
-            value={"nom"}
-            name="test"
-            label="nom"
+            emptyValue={inputEmpty}
+            name="password"
+            type="password"
+            id="password"
+            value={valueInput.password}
+            OnChange={handleOnchange}
+            placeholder={"Password"}
           />
 
           <button
@@ -38,7 +38,7 @@ function LoginComponent() {
             </Link>
           </p>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 }

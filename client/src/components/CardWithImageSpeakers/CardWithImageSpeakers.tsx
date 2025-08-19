@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
 import type { CardWithImageSpeakersPropsType } from "../../Types";
-
+import { motion } from "motion/react";
 function CardWithImageSpeakers({
   title,
   description,
@@ -24,7 +24,11 @@ function CardWithImageSpeakers({
         " py-14 lg:pb-0   rounded-lg"
       )}
     >
-      <div
+      <motion.div
+        initial={{ y: "100%", opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "50px" }}
+        transition={{ duration: 0.5 }}
         className={clsx(
           {
             "lg:flex-row-reverse ": Reverse == true,
@@ -33,7 +37,9 @@ function CardWithImageSpeakers({
           "  text-center flex justify-center items-center flex-col  lg:gap-x-28 lg:items-start"
         )}
       >
-        <div
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.5 }}
           className={clsx({
             "bg-tertiaire-white rounded-lg ": HomePage === false,
           })}
@@ -60,7 +66,7 @@ function CardWithImageSpeakers({
               alt="person for mobile"
             />
           </picture>
-        </div>
+        </motion.div>
         <div
           className={clsx(
             {
@@ -91,7 +97,7 @@ function CardWithImageSpeakers({
             color={HomePage ? "black" : "orange"}
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export function CartDropdown() {
       className=" absolute no-doc-scrool top-20 md:top-22 pt-10 bottom-0 inset-x-0 z-10  bg-primary-black/40 backdrop-blur-sm flex md:justify-end md:px-10  "
       onClick={(e) => handlerHideCard(e)}
     >
-      <div className=" flex w-[90%] max-w-94.5 mx-auto md:mx-0  h-115  flex-col bg-primary-white rounded-lg p-4 ">
+      <div className=" flex w-[90%] max-w-94.5 mx-auto md:mx-0  max-h-100  flex-col bg-primary-white rounded-lg p-4 ">
         <div className="mb-4  flex justify-between items-center">
           <h4 className=" text-lg font-bold ">CART ({TotalCart.length})</h4>
           <p
@@ -30,35 +30,37 @@ export function CartDropdown() {
           </p>
         </div>
         {TotalCart.length ? (
-          <div className=" mb-4 flex h-72 w-full flex-col overflow-auto">
-            {TotalCart.map((item) => (
-              <CardItem
-                key={item.id}
-                id={item.id}
-                PageType="cartDropdownComponent"
-              />
-            ))}
-          </div>
+          <>
+            <div className=" mb-4 flex h-72 w-full flex-col overflow-auto">
+              {TotalCart.map((item) => (
+                <CardItem
+                  key={item.id}
+                  id={item.id}
+                  PageType="cartDropdownComponent"
+                />
+              ))}
+            </div>
+
+            <div className=" flex justify-between items-center mb-6">
+              <span className=" uppercase text-base text-primary-black/50">
+                Totale
+              </span>
+              <span className="text-lg font-bold">$10000</span>
+            </div>
+            <ButtonComponent
+              type="button"
+              name=" Aller a la caisse"
+              color="orange"
+              url="/checkout"
+              disabled={TotalCart.length === 0}
+              handleClickwithUrl={() => dispatch(HideCartAction())}
+            />
+          </>
         ) : (
           <div className="m-auto justify-items-center text-xl">
             Votre panier est vide
           </div>
         )}
-        <div className=" flex justify-between items-center mb-6">
-          <span className=" uppercase text-base text-primary-black/50">
-            {" "}
-            Totale
-          </span>
-          <span className="text-lg font-bold">$10000</span>
-        </div>
-        <ButtonComponent
-          type="button"
-          name=" Aller a la caisse"
-          color="orange"
-          url="/checkout"
-          disabled={TotalCart.length === 0}
-          handleClickwithUrl={() => dispatch(HideCartAction())}
-        />
       </div>
     </motion.div>
   );

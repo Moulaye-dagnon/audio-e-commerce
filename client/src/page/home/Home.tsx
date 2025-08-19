@@ -15,8 +15,12 @@ import image_earphone_desktop from "../../assets/home/desktop/image-earphones-yx
 import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { scrollUpFunct } from "../../utils/scrollUpFunct";
 function Home() {
   const [isHover, setHover] = useState(false);
+  useEffect(() => {
+    scrollUpFunct();
+  }, []);
   useEffect(() => {
     if (isHover) {
       document.body.style.overflow = "hidden";
@@ -26,7 +30,7 @@ function Home() {
   }, [isHover]);
 
   return (
-    <div className=" ">
+    <div className="">
       <HeaderOverview />
       <main className="px-6 md:px-10 lg:px-20 xl:px-40  ">
         <div className=" my-16 rounded-lg bg-white w-full py-3 md:flex justify-between items-center gap-x-2.5 lg:gap-x-7.5">
@@ -59,7 +63,7 @@ function Home() {
           title="Haut-parleur ZX7"
           url="/speaker/zx7-speaker"
         />
-        <div className="flex max-md:flex-col gap-y-8 mb-30 md:gap-x-2.5 md:gap-y-0 lg:justify-between  ">
+        <div className=" relative flex max-md:flex-col gap-y-8 mb-30 md:gap-x-2.5 md:gap-y-0 lg:justify-between  ">
           <AnimatePresence>
             {isHover && (
               <motion.div
@@ -113,11 +117,12 @@ function Home() {
                 sizes=""
               />
               <motion.img
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
                 whileHover={{
                   scale: 1.5,
-                }}
-                transition={{
-                  duration: 1,
                 }}
                 className=" rounded-lg w-full  "
                 src={image_earphone_mobile}
@@ -125,10 +130,14 @@ function Home() {
               />
             </picture>
           </div>
-          <div className="lg:flex-none lg:w-[49.5%] w-full pl-6 lg:pl-25 bg-tertiaire-white rounded-lg py-10 md:flex md:flex-col md:justify-center md:items-start">
-            <h3
-              className=" text-[28px] max-w-60 font-bold  text-primary-black mb-8 uppercase"
-            >
+          <motion.div
+            initial={{ x: "100%", opacity: 1 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="lg:flex-none lg:w-[49.5%] w-full pl-6 lg:pl-25 bg-tertiaire-white rounded-lg py-10 md:flex md:flex-col md:justify-center md:items-start"
+          >
+            <h3 className=" text-[28px] max-w-60 font-bold  text-primary-black mb-8 uppercase">
               Écouteurs YX1
             </h3>
             <ButtonComponent
@@ -137,7 +146,7 @@ function Home() {
               name="Voir produit"
               color="black"
             />
-          </div>
+          </motion.div>
         </div>
       </main>
     </div>
