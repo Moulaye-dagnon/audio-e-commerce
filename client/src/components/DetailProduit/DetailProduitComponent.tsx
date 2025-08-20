@@ -264,9 +264,11 @@ function DetailProduitComponent({
         </h4>
         <div className="mt-14 flex justify-center gap-y-14 md:gap-y-0 md:gap-x-2.5 lg:gap-x-8 items-center max-md:flex-col">
           {item?.others.map((i) => {
+            console.log(i);
+
             return (
               <CardWithOnlyImageAndButton
-                url={i.slug}
+                url={item.slug}
                 Title={i.name}
                 imageMobile={i.image.mobile}
                 imageTablet={i.image.tablet}

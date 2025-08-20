@@ -16,6 +16,7 @@ import EarphoneDetail from "./page/earphoneDetail/EarphoneDetail";
 import LoginComponent from "./page/login/LoginComponent";
 import CheckOut from "./page/checkout/CheckOut";
 import NotFoundPage from "./page/NotFound/NotFoundPage";
+import { RegisterComponent } from "./page/register/RegisterComponent";
 
 function App() {
   const root = createBrowserRouter(
@@ -32,6 +33,7 @@ function App() {
           <Route path="checkout" element={<CheckOut />} />
         </Route>
         <Route path="/login" element={<LoginComponent />} />
+        <Route path="/register" element={<RegisterComponent />} />
         <Route path="*" element={<NotFoundPage />} />
       </>
     )

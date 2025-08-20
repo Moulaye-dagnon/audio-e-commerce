@@ -10,7 +10,7 @@ const Headphone = require("./routes/Headphone");
 const EarPhone = require("./routes/Earphone");
 const Speaker = require("./routes/Speaker");
 const getHeaders = require("./utils/getHeaders");
-
+const authRoute = require("./routes/auth");
 app.use(
   cors({
     credentials: true,
@@ -29,14 +29,14 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
   });
 }
-
-//app.all("/api/auth/", toNodeHandler(auth));
+app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.use(express.json());
 
 app.use("", Headphone);
 app.use("", EarPhone);
 app.use("", Speaker);
+app.use("", authRoute);
 
 const port = process.env.PORT || 3000;
 app.listen(port, (req, res) => {
