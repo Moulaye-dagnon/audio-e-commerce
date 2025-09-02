@@ -17,8 +17,31 @@ import LoginComponent from "./page/login/LoginComponent";
 import CheckOut from "./page/checkout/CheckOut";
 import NotFoundPage from "./page/NotFound/NotFoundPage";
 import { RegisterComponent } from "./page/register/RegisterComponent";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { addUser } from "./redux/user/UserSlice";
+import { useEffect } from "react";
+import useGetMe from "./hooks/auth/useGetMe";
 
 function App() {
+  const User = useAppSelector((state) => state.user.user);
+
+  const dispatch = useAppDispatch();
+  const { isSuccess, isError, refetch, data,  } = useGetMe();
+  useEffect(() => {
+    refetch();
+  }, []);
+  useEffect(() => {
+    if (isSuccess && data) {
+      dispatch(addUser(data));
+    }
+    if (isError) {
+      dispatch(addUser(undefined));
+    }
+  }, [isSuccess, isError, data]);
+  //   console.log("loading", isLoading);
+
+  if (isSuccess) console.log(User);
+
   const root = createBrowserRouter(
     createRoutesFromElements(
       <>

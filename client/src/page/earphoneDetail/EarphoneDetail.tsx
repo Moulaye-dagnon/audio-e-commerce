@@ -1,8 +1,17 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useGetDetailEarphone from "../../hooks/Earphone/useGetDetailEarphone";
 import DetailProduitComponent from "../../components/DetailProduit/DetailProduitComponent";
+import { useAppSelector } from "../../redux/hooks";
+import { useEffect } from "react";
 
 function EarphoneDetail() {
+  const User = useAppSelector((state) => state.user.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!User) {
+      navigate("/login", { state: { redirectFromCick: true } });
+    }
+  });
   const { slug } = useParams();
 
   const {

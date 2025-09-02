@@ -21,7 +21,7 @@ export default function ButtonComponent({
   style = {},
   url,
   handleClickwithUrl,
-  disabled = false,
+  disabled,
   isAdded,
 }: ButtonProps) {
   if (url)

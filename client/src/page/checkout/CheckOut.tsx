@@ -34,7 +34,7 @@ function CheckOut() {
   const TotalCart = useAppSelector((state) => state.cart.carts);
 
   return (
-    <div className=" relative bg-tertiaire-white py-4  px-6 md:px-10 lg:px-20 xl:px-40">
+    <div className=" relative bg-tertiaire-white mt-10 py-4  px-6 md:px-10 lg:px-20 xl:px-40">
       <h3
         onClick={() => navigate(-1)}
         className=" mb-6 text-left text-primary-black/50 cursor-pointer"

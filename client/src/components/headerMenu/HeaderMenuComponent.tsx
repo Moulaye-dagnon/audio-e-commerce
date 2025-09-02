@@ -47,13 +47,12 @@ function HeaderMenuComponent() {
           )}
         </motion.div>
 
-        <div>AudioPhile </div>
+        <div>
+          <NavLink to={"/"}>AudioPhile</NavLink>
+        </div>
 
         <div className="hidden lg:block">
           <ul className="flex justify-between gap-x-8.5">
-            <li className="hover:text-primary-orange">
-              <NavLink to={"/"}>Accueil</NavLink>
-            </li>
             <li className="hover:text-primary-orange">
               <NavLink to={"/headphone"}>Casque</NavLink>
             </li>

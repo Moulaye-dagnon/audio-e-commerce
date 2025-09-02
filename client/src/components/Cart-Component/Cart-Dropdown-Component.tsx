@@ -19,7 +19,7 @@ export function CartDropdown() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.4 }}
-      className="  absolute no-doc-scrool  inset-0 pt-32  z-10  bg-primary-black/40 backdrop-blur-sm flex  md:justify-end md:px-10  "
+      className="   absolute no-doc-scrool   inset-0 pt-32  z-10  bg-primary-black/40 backdrop-blur-sm flex  md:justify-end md:px-10  "
       onClick={(e) => handlerHideCard(e)}
     >
       <div className=" flex w-[90%] max-w-94.5 mx-auto md:mx-0  max-h-100  flex-col bg-primary-white rounded-lg p-4 ">

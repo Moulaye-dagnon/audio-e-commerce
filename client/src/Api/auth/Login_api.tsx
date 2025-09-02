@@ -1,4 +1,4 @@
-import type { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import type { User } from "../../Types/User";
 import { api } from "../axiosConfig";
 
@@ -16,7 +16,11 @@ async function Login_api({
     });
     return response.data;
   } catch (error) {
-    throw new Error((error as AxiosError).message);
+    const a = error as AxiosError<{
+      code: string;
+      message: string;
+    }>;
+    throw new Error(` ${a.response?.data.message}`);
   }
 }
 

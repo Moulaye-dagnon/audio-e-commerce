@@ -1,34 +1,29 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { InputComponent } from "../../components/InputComponent/InputComponent";
 import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
 import useRegisterMutation from "../../hooks/auth/useRegisterMutation";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import type { RegisterType } from "../../Types/Form.type";
 export function RegisterComponent() {
-  const [valueInput, setValueInput] = useState({
-    username: "",
-    email: "",
-    password: "",
-    ConfirmPassword: "",
-  });
+  const {
+    handleSubmit,
+    register,
+    formState: { isSubmitting },
+  } = useForm<RegisterType>();
+
   const navigate = useNavigate();
-  const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setValueInput({ ...valueInput, [name]: value });
-  };
+
   const { mutate } = useRegisterMutation();
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (valueInput.password === valueInput.ConfirmPassword) {
+  const onSubmit: SubmitHandler<RegisterType> = async (data) => {
+    if (data.password === data.ConfirmPassword) {
       mutate(
         {
-          email: valueInput.email,
-          name: valueInput.username,
-          password: valueInput.password,
+          email: data.email,
+          name: data.name,
+          password: data.password,
         },
         {
-          onSuccess: (data) => {
-            console.log(data);
-
+          onSuccess: () => {
             navigate("/login");
           },
           onError: (err) => {
@@ -42,54 +37,51 @@ export function RegisterComponent() {
   return (
     <div>
       <div className="max-w-[327px] md:max-w-[400px]  mx-auto bg-semi-dark-blue rounded-xl p-6 md:p-8">
-        <form onSubmit={handleSubmit}>
-          <div className="text-4xl  mb-4">Sign Up</div>
-          <InputComponent
-            label="Username"
-            type={"text"}
-            name={"username"}
-            id={"username"}
-            value={valueInput.username}
-            handleChange={handleOnchange}
-            placeholder={"Username address"}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1 className="text-4xl  mb-4">Inscrivez-vous</h1>
+          <InputComponent<RegisterType>
+            label="Nom"
+            type="text"
+            name="name"
+            id="nom"
+            register={register}
+            placeholder={"Votre nom"}
           />
-          <InputComponent
+          <InputComponent<RegisterType>
             label="Email"
-            type={"email"}
-            name={"email"}
-            id={"email"}
-            value={valueInput.email}
-            handleChange={handleOnchange}
-            placeholder={"Email address"}
+            type="email"
+            name="email"
+            id="email"
+            register={register}
+            placeholder={"Votre adresse email "}
           />
-          <InputComponent
+          <InputComponent<RegisterType>
             id="password"
             label="Password"
+            name="password"
             type={"password"}
-            name={"password"}
-            value={valueInput.password}
-            handleChange={handleOnchange}
-            placeholder={"Password"}
+            register={register}
+            placeholder={"Mot de passe"}
           />
-          <InputComponent
+          <InputComponent<RegisterType>
             id="ConfirmPassword"
             label="Confirm password"
             type={"password"}
-            name={"ConfirmPassword"}
-            value={valueInput.ConfirmPassword}
-            handleChange={handleOnchange}
-            placeholder={"Repeat Password"}
+            name="ConfirmPassword"
+            register={register}
+            placeholder={"Confirmer Votre mot de passe"}
           />
 
           <ButtonComponent
-            name="Create an account"
+            name={isSubmitting ? "Creating..." : "Créer un compte"}
             color="orange"
             type="submit"
+            disabled={isSubmitting}
           />
           <p className="w-5/6 text-xm mx-auto">
-            Alread have an account?
+            Déjà un compte?
             <Link className=" inline-block ml-2 text-red" to={"/login"}>
-              Login
+              Connectez-vous
             </Link>
           </p>
         </form>

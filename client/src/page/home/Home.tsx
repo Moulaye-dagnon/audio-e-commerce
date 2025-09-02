@@ -16,8 +16,7 @@ import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { scrollUpFunct } from "../../utils/scrollUpFunct";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { getUser } from "../../redux/user/UserSlice";
+
 function Home() {
   const [isHover, setHover] = useState(false);
   useEffect(() => {
@@ -30,22 +29,9 @@ function Home() {
       document.body.style.overflow = "scroll";
     }
   }, [isHover]);
-  const User = useAppSelector((state) => state.user.user);
-  const loading = useAppSelector((state) => state.user.status);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (loading == "succeeded") {
-      console.log(User);
-    }
-  }, [User, loading]);
 
   return (
-    <div className="">
+    <>
       <HeaderOverview />
       <main className="px-6 md:px-10 lg:px-20 xl:px-40  ">
         <div className=" my-16 rounded-lg bg-white w-full py-3 md:flex justify-between items-center gap-x-2.5 lg:gap-x-7.5">
@@ -164,7 +150,7 @@ function Home() {
           </motion.div>
         </div>
       </main>
-    </div>
+    </>
   );
 }
 

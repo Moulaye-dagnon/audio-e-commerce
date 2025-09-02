@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 
 function FooterComponent() {
   return (
-    <div className="bg-primary-black text-primary-white pt-12.5 pb-9.5 flex justify-center items-center flex-col  md:px-10 lg:px-40 lg:items-start mt-30">
+    <div className="bg-primary-black text-primary-white pt-12.5 pb-9.5 flex justify-center items-center flex-col  md:px-10 lg:px-40 lg:items-start ">
       <div className="w-full flex flex-col items-center md:justify-start gap-y-12 md:items-start lg:flex-row lg:justify-between">
         <h1 className="text-xl font-bold  ">audioPhile </h1>
         <div className="">

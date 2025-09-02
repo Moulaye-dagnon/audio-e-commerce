@@ -13,7 +13,7 @@ function MenuItemCard({ title, imgScr, url, handleClick }: MenuItemCardProps) {
     <motion.div
       whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.7 }}
-      className="  max-w-87.5  first:max-md:mt-10 last:max-md:mb-10 my-16 lg:my-0   w-full pt-20.5 pb-5.5 bg-tertiaire-white rounded-sm relative flex justify-between items-center flex-col  "
+      className=" mx-auto max-w-87.5  first:max-md:mt-10 last:max-md:mb-10 my-16 lg:my-0   w-full pt-20.5 pb-5.5 bg-tertiaire-white rounded-sm relative flex justify-between items-center flex-col  "
     >
       <h2 className="text-[15px] font-bold text-center mb-4">{title}</h2>
       <div className=" w-30 md:w-36 absolute -top-1/5 left-1/2  -translate-x-1/2">

@@ -1,24 +1,23 @@
-import type { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import type { HTMLInputTypeAttribute } from "react";
+import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-interface InputProps {
+interface InputProps<T extends FieldValues> {
   label: string;
-  name: string;
+  name: Path<T>;
   id: string;
   type: HTMLInputTypeAttribute;
-  value: string | number;
-  placeholder: string | undefined;
-  handleChange?: ChangeEventHandler<HTMLInputElement>;
+  register: UseFormRegister<T>;
+  placeholder?: string;
 }
 
-export function InputComponent({
+export function InputComponent<T extends FieldValues>({
   label,
   name,
-  id,
-  placeholder,
   type,
-  value,
-  handleChange,
-}: InputProps) {
+  id,
+  register,
+  placeholder,
+}: InputProps<T>) {
   return (
     <div className="my-6  ">
       <label htmlFor={id} className=" text-xs font-bold   ">
@@ -26,12 +25,9 @@ export function InputComponent({
       </label>
       <input
         id={id}
-        name={name}
         type={type}
+        {...register(name)}
         placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-        required
         className=" mt-2.5 block w-full py-4.5 pl-6 border border-input-border focus:outline-primary-orange rounded-md cursor-pointer caret-primary-orange "
       />
     </div>

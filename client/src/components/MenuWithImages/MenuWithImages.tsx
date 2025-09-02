@@ -3,10 +3,9 @@ import icon_earphone from "../../assets/shared/desktop/image-category-thumbnail-
 import icon_speaker from "../../assets/shared/desktop/image-category-thumbnail-speakers.png";
 import MenuItemCard from "../menuItemCard/MenuItemCard";
 
-
 function MenuWithImages() {
   return (
-    <div className="px-6 md:px-10 lg:px-20 xl:px-40 my-16 rounded-lg bg-white w-full py-3 md:flex justify-between items-center gap-x-2.5 lg:gap-x-7.5">
+    <div className="  px-6 md:px-10 lg:px-20 xl:px-40 my-16 rounded-lg bg-white w-full py-3 md:flex justify-between items-center gap-x-2.5 lg:gap-x-7.5">
       <MenuItemCard
         title="Casque"
         imgScr={icon_headphone}

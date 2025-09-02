@@ -10,7 +10,7 @@ import { motion } from "motion/react";
 
 function CardWithImagePerson() {
   return (
-    <div className="mx-6 md:mx-10 lg:mx-20 xl:mx-40  ">
+    <div className="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-30 ">
       <motion.div
         initial={{ x: "-100%" }}
         whileInView={{ x: 0 }}
