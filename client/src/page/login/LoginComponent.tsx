@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 import { InputComponent } from "../../components/InputComponent/InputComponent";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
+import useLogin from "../../hooks/auth/useLogin";
 
 function LoginComponent() {
   const [valueInput, setValueInput] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+
   const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValueInput({ ...valueInput, [name]: value });
   };
+  const { mutate } = useLogin();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(valueInput);
+    mutate(valueInput, {
+      onSuccess: (data) => {
+        console.log(data);
+
+        navigate("/");
+      },
+      onError: (err) => console.log(err),
+    });
   };
+
   return (
     <div>
       <div className="max-w-[327px] md:max-w-[400px]  mx-auto bg-semi-dark-blue rounded-xl p-6 md:p-8">

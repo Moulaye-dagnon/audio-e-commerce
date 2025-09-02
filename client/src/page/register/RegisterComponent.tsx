@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { InputComponent } from "../../components/InputComponent/InputComponent";
 import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
+import useRegisterMutation from "../../hooks/auth/useRegisterMutation";
 export function RegisterComponent() {
   const [valueInput, setValueInput] = useState({
     username: "",
@@ -9,13 +10,33 @@ export function RegisterComponent() {
     password: "",
     ConfirmPassword: "",
   });
+  const navigate = useNavigate();
   const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValueInput({ ...valueInput, [name]: value });
   };
+  const { mutate } = useRegisterMutation();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(valueInput);
+    if (valueInput.password === valueInput.ConfirmPassword) {
+      mutate(
+        {
+          email: valueInput.email,
+          name: valueInput.username,
+          password: valueInput.password,
+        },
+        {
+          onSuccess: (data) => {
+            console.log(data);
+
+            navigate("/login");
+          },
+          onError: (err) => {
+            console.log(err);
+          },
+        }
+      );
+    }
   };
 
   return (

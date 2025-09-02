@@ -15,7 +15,8 @@ function Layout() {
   return (
     <div className=" relative  mx-auto overflow-hidden">
       <HeaderMenuComponent />
-      <AnimatePresence>{!HideCard && <CartDropdown />}</AnimatePresence>
+      <AnimatePresence>
+		{!HideCard && ( <CartDropdown />)}</AnimatePresence>
       <Outlet />
       <footer
         className={clsx({

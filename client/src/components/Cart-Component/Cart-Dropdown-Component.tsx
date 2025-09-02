@@ -3,20 +3,23 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
 import { motion } from "motion/react";
 import { allRemoveAction, HideCartAction } from "../../redux/Cart/CartSlice";
+import { scrollUpFunct } from "../../utils/scrollUpFunct";
 export function CartDropdown() {
   const TotalCart = useAppSelector((state) => state.cart.carts);
   const dispatch = useAppDispatch();
   const handlerHideCard = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target !== e.currentTarget) return;
     dispatch(HideCartAction());
+    scrollUpFunct();
   };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.4 }}
-      className=" absolute no-doc-scrool top-20 md:top-22 pt-10 bottom-0 inset-x-0 z-10  bg-primary-black/40 backdrop-blur-sm flex md:justify-end md:px-10  "
+      className="  absolute no-doc-scrool  inset-0 pt-32  z-10  bg-primary-black/40 backdrop-blur-sm flex  md:justify-end md:px-10  "
       onClick={(e) => handlerHideCard(e)}
     >
       <div className=" flex w-[90%] max-w-94.5 mx-auto md:mx-0  max-h-100  flex-col bg-primary-white rounded-lg p-4 ">

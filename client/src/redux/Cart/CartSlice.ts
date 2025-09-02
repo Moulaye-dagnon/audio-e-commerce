@@ -5,7 +5,7 @@ import {
   decrementQuantity,
   deleteToCart,
   incrementQuantity,
-} from "../../store/Cart/cart.utils";
+} from "./Cart.utils";
 
 interface CartStore {
   carts: CartItem[];

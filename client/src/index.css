@@ -37,4 +37,5 @@
 }
 :root:has(.no-doc-scrool) {
   overflow: hidden;
+  
 }
