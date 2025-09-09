@@ -38,7 +38,7 @@ export default function ButtonComponent({
               color == "black",
             "bg-emerald-200 text-emerald-950": isAdded === true,
           },
-          "px-8 py-4 inline-block cursor-pointer text-center "
+          "inline-block cursor-pointer px-8 py-4 text-center "
         )}
       >
         {name}
@@ -58,7 +58,7 @@ export default function ButtonComponent({
           " bg-primary-white border border-primary-black text-primary-black hover:bg-primary-black hover:text-primary-white ":
             color == "black",
         },
-        "px-8 py-4 cursor-pointer "
+        "cursor-pointer px-8 py-4 "
       )}
     >
       {name}

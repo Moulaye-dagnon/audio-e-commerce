@@ -1,6 +1,22 @@
 import type { HTMLInputTypeAttribute } from "react";
-import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import type {
+  FieldValues,
+  LiteralUnion,
+  Message,
+  MultipleFieldErrors,
+  Path,
+  Ref,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
+export type FieldError = {
+  type: LiteralUnion<keyof RegisterOptions, string>;
+  root?: FieldError;
+  ref?: Ref;
+  types?: MultipleFieldErrors;
+  message?: Message;
+};
 interface InputProps<T extends FieldValues> {
   label: string;
   name: Path<T>;
@@ -8,6 +24,7 @@ interface InputProps<T extends FieldValues> {
   type: HTMLInputTypeAttribute;
   register: UseFormRegister<T>;
   placeholder?: string;
+  error: FieldError | undefined;
 }
 
 export function InputComponent<T extends FieldValues>({
@@ -17,6 +34,7 @@ export function InputComponent<T extends FieldValues>({
   id,
   register,
   placeholder,
+  error,
 }: InputProps<T>) {
   return (
     <div className="my-6  ">
@@ -28,8 +46,11 @@ export function InputComponent<T extends FieldValues>({
         type={type}
         {...register(name)}
         placeholder={placeholder}
-        className=" mt-2.5 block w-full py-4.5 pl-6 border border-input-border focus:outline-primary-orange rounded-md cursor-pointer caret-primary-orange "
+        className=" mt-2.5 block  w-full  cursor-pointer rounded-md border border-input-border py-4.5 pl-6 caret-primary-orange focus:outline-primary-orange "
       />
+      {error?.message && (
+        <small className=" text-red-500">{error.message}</small>
+      )}
     </div>
   );
 }

@@ -10,7 +10,7 @@ interface CardWithImageFullCardProps {
 function CardWithImageFullCard({ title, url }: CardWithImageFullCardProps) {
   return (
     <motion.div
-      className=" relative  rounded-lg mb-8 overflow-hidden"
+      className=" relative  mb-8 overflow-hidden rounded-lg"
       initial={{ x: "100%", opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration: 1 }}
@@ -35,7 +35,7 @@ function CardWithImageFullCard({ title, url }: CardWithImageFullCardProps) {
           transition={{
             duration: 1,
           }}
-          className=" w-full  object-center  object-cover   "
+          className=" w-full  object-cover  object-center   "
           src={image_speaker_zx7_mobile}
           alt="person for mobile"
         />
@@ -55,9 +55,9 @@ function CardWithImageFullCard({ title, url }: CardWithImageFullCardProps) {
         transition={{
           duration: 1,
         }}
-        className=" absolute  top-1/2 -translate-y-1/2 left-5 lg:left-40 rounded-lg "
+        className=" absolute  top-1/2 left-5 -translate-y-1/2 rounded-lg lg:left-40 "
       >
-        <h3 className=" text-[28px] max-w-60 font-bold  text-primary-black mb-8 uppercase">
+        <h3 className=" mb-8 max-w-60 text-[28px]  font-bold text-primary-black uppercase">
           {title}
         </h3>
         <ButtonComponent

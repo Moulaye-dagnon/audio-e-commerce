@@ -5,7 +5,7 @@ import MenuItemCard from "../menuItemCard/MenuItemCard";
 
 function MenuWithImages() {
   return (
-    <div className="  px-6 md:px-10 lg:px-20 xl:px-40 my-16 rounded-lg bg-white w-full py-3 md:flex justify-between items-center gap-x-2.5 lg:gap-x-7.5">
+    <div className="  my-16 w-full items-center justify-between gap-x-2.5 rounded-lg bg-white px-6 py-3 md:flex md:px-10 lg:gap-x-7.5 lg:px-20 xl:px-40">
       <MenuItemCard
         title="Casque"
         imgScr={icon_headphone}

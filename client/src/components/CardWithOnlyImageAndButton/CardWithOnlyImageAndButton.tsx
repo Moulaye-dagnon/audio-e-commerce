@@ -11,7 +11,7 @@ function CardWithOnlyImageAndButton({
 }: CardWithOnlyImageAndButtonPropsType) {
   return (
     <div className="  text-center ">
-      <div className="bg-tertiaire-white rounded-lg  ">
+      <div className="rounded-lg bg-tertiaire-white  ">
         <picture>
           <source media="(min-width:1024px )" srcSet={ImageDesktop} sizes="" />
           <source media="(min-width:768px )" srcSet={imageTablet} sizes="" />
@@ -22,8 +22,8 @@ function CardWithOnlyImageAndButton({
           />
         </picture>
       </div>
-      <div className=" mt-8 max-w-[80%] mx-auto flex flex-col justify-center items-center gap-y-8     ">
-        <h3 className="max-w-87 text-center    uppercase text-[24px] font-bold  ">
+      <div className=" mx-auto mt-8 flex max-w-[80%] flex-col items-center justify-center gap-y-8     ">
+        <h3 className="max-w-87 text-center    text-[24px] font-bold uppercase  ">
           {Title}
         </h3>
 

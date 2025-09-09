@@ -21,7 +21,7 @@ function CardWithImageSpeakers({
             HomePage == true,
         },
 
-        " py-14 lg:pb-0   rounded-lg"
+        " rounded-lg py-14   lg:pb-0"
       )}
     >
       <motion.div
@@ -34,7 +34,7 @@ function CardWithImageSpeakers({
             "lg:flex-row-reverse ": Reverse == true,
             "lg:flex-row": Reverse == undefined,
           },
-          "  text-center flex justify-center items-center flex-col  lg:gap-x-28 lg:items-start"
+          "  flex flex-col items-center justify-center text-center  lg:items-start lg:gap-x-28"
         )}
       >
         <motion.div
@@ -73,18 +73,18 @@ function CardWithImageSpeakers({
               "max-w-87": HomePage == true,
               "max-w-[80%]": HomePage == false,
             },
-            "  flex flex-col justify-center items-center gap-y-8 mt-8 lg:mt-0 lg:items-start  "
+            "  mt-8 flex flex-col items-center justify-center gap-y-8 lg:mt-0 lg:items-start  "
           )}
         >
           {New && (
-            <span className=" text-primary-orange text-sm">
+            <span className=" text-sm text-primary-orange">
               Nouveau produit
             </span>
           )}
           <h3
             className={clsx(
               { "max-w-60": HomePage == true, "max-w-87": HomePage == false },
-              " text-center lg:text-left   uppercase text-[28px] md:text-[40px] font-bold  "
+              " text-center text-[28px]   font-bold uppercase md:text-[40px] lg:text-left  "
             )}
           >
             {title}

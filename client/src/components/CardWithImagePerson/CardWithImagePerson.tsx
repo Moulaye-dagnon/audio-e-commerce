@@ -10,13 +10,13 @@ import { motion } from "motion/react";
 
 function CardWithImagePerson() {
   return (
-    <div className="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-30 ">
+    <div className="mx-6 mb-30 md:mx-10 lg:mx-20 xl:mx-40 ">
       <motion.div
         initial={{ x: "-100%" }}
         whileInView={{ x: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="lg:flex lg:justify-between lg:items-center lg:flex-row-reverse text-primary-black"
+        className="text-primary-black lg:flex lg:flex-row-reverse lg:items-center lg:justify-between"
       >
         <picture>
           <source
@@ -39,7 +39,7 @@ function CardWithImagePerson() {
           viewport={{ once: true }}
           className=" text-center lg:max-w-110 lg:text-left "
         >
-          <h3 className=" uppercase text-[28px] md:text-[40] font-bold  my-8">
+          <h3 className=" my-8 text-[28px] font-bold uppercase  md:text-[40]">
             Vous apporter le <br />
             <span className=" text-primary-orange">meilleur</span> équipement
             audio

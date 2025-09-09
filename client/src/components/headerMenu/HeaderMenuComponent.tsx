@@ -33,12 +33,12 @@ function HeaderMenuComponent() {
         " fixed inset-x-0 top-0 z-30   "
       )}
     >
-      <div className=" w-full px-6 md:px-10 lg:px-40  flex justify-between items-center border-b border-primary-white/50 py-9 text-primary-white font-bold bg-primary-black">
+      <div className=" flex w-full items-center justify-between  border-b border-primary-white/50 bg-primary-black px-6 py-9 font-bold text-primary-white md:px-10 lg:px-40">
         <motion.div
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 300 }}
           onClick={() => setOpenMenu((c) => !c)}
-          className="lg:hidden w-4"
+          className="w-4 lg:hidden"
         >
           {openMenu ? (
             <IoCloseOutline size={"100%"} color="#fff" />
@@ -78,7 +78,7 @@ function HeaderMenuComponent() {
         >
           <LuShoppingCart />
           {TotalCart.length > 0 && (
-            <span className=" w-5  text-center text-[10px] rounded-full bg-primary-orange text-primary-white absolute -top-4 right-0  ">
+            <span className=" absolute  -top-4 right-0 w-5 rounded-full bg-primary-orange text-center text-[10px] text-primary-white  ">
               {TotalCart.length}
             </span>
           )}
@@ -91,7 +91,7 @@ function HeaderMenuComponent() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4 }}
-            className="lg:hidden rounded-lg bg-white w-full px-6 md:px-10 py-3 md:flex justify-between items-center gap-x-2.5"
+            className="w-full items-center justify-between gap-x-2.5 rounded-lg bg-white px-6 py-3 md:flex md:px-10 lg:hidden"
           >
             <MenuItemCard
               title="Casque"

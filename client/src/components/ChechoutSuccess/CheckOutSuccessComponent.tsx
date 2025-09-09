@@ -8,21 +8,21 @@ function CheckOutSuccessComponent() {
   const [dropdownProduct, setDropdownProduct] = useState(false);
 
   return (
-    <div className=" fixed no-doc-scrool  md:top-0 pt-10 bottom-0 inset-x-0 z-10  bg-primary-black/40 backdrop-blur-sm flex justify-center items-center px-6">
-      <div className="bg-primary-white p-8 rounded-lg">
+    <div className=" no-doc-scrool fixed  inset-x-0 bottom-0 z-10 flex items-center  justify-center bg-primary-black/40 px-6 pt-10 backdrop-blur-sm md:top-0">
+      <div className="rounded-lg bg-primary-white p-8">
         <div>logo</div>
-        <div className=" uppercase font-bold text-2xl mb-4">
+        <div className=" mb-4 text-2xl font-bold uppercase">
           Merci pour votre commande
         </div>
-        <div className="text-base text-primary-black/50 mb-6 ">
+        <div className="mb-6 text-base text-primary-black/50 ">
           Vous recevrez sous peu une confirmation par e-mail.
         </div>
-        <div className=" mb-6 flex max-md:flex-col justify-center  rounded-lg">
+        <div className=" mb-6 flex justify-center rounded-lg  max-md:flex-col">
           <motion.div
             initial={false}
             animate="open"
             transition={{ duration: 0.3 }}
-            className=" divide-y divide-primary-black/10 p-6 bg-secondary-white rounded-lg flex flex-col  items-center"
+            className=" flex flex-col items-center divide-y divide-primary-black/10 rounded-lg bg-secondary-white  p-6"
           >
             <AnimatePresence>
               {dropdownProduct ? (
@@ -63,14 +63,14 @@ function CheckOutSuccessComponent() {
             </AnimatePresence>
             <span
               onClick={() => setDropdownProduct((prev) => !prev)}
-              className=" text-center py-3 inline-block font-bold text-sm text-primary-black/50 cursor-pointer"
+              className=" inline-block cursor-pointer py-3 text-center text-sm font-bold text-primary-black/50"
             >
               et {TotalCart.length - 1} autres article(s)
             </span>
           </motion.div>
-          <div className="   flex flex-col   justify-end px-6 py-4 gap-y-2 bg-primary-black">
+          <div className="   flex flex-col   justify-end gap-y-2 bg-primary-black px-6 py-4">
             <span className="text-primary-white/50">GRAND TOTAL</span>
-            <span className="text-primary-white font-bold">1000</span>
+            <span className="font-bold text-primary-white">1000</span>
           </div>
         </div>
         <ButtonComponent

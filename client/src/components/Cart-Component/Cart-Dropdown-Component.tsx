@@ -19,15 +19,15 @@ export function CartDropdown() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.4 }}
-      className="   absolute no-doc-scrool   inset-0 pt-32  z-10  bg-primary-black/40 backdrop-blur-sm flex  md:justify-end md:px-10  "
+      className="   no-doc-scrool absolute   inset-0 z-10  flex  bg-primary-black/40 pt-32 backdrop-blur-sm  md:justify-end md:px-10  "
       onClick={(e) => handlerHideCard(e)}
     >
-      <div className=" flex w-[90%] max-w-94.5 mx-auto md:mx-0  max-h-100  flex-col bg-primary-white rounded-lg p-4 ">
-        <div className="mb-4  flex justify-between items-center">
+      <div className=" mx-auto flex max-h-100 w-[90%] max-w-94.5  flex-col  rounded-lg bg-primary-white p-4 md:mx-0 ">
+        <div className="mb-4  flex items-center justify-between">
           <h4 className=" text-lg font-bold ">CART ({TotalCart.length})</h4>
           <p
             onClick={() => dispatch(allRemoveAction())}
-            className=" cursor-pointer underline text-primary-black/50 text-base"
+            className=" cursor-pointer text-base text-primary-black/50 underline"
           >
             Tous supprimer
           </p>
@@ -44,8 +44,8 @@ export function CartDropdown() {
               ))}
             </div>
 
-            <div className=" flex justify-between items-center mb-6">
-              <span className=" uppercase text-base text-primary-black/50">
+            <div className=" mb-6 flex items-center justify-between">
+              <span className=" text-base text-primary-black/50 uppercase">
                 Totale
               </span>
               <span className="text-lg font-bold">$10000</span>

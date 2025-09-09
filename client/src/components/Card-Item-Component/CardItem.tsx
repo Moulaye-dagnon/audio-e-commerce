@@ -27,22 +27,22 @@ function CardItem({
       <div className="w-20">
         <img src={Item?.image.mobile} alt="" />
       </div>
-      <div className=" flex-1  px-4 flex items-start flex-col gap-y-2">
+      <div className=" flex  flex-1 flex-col items-start gap-y-2 px-4">
         <div className=" text-base font-bold">{Item?.name.slice(0, 13)}</div>
         <div className="text-sm text-primary-black/50">$ {Item?.price}</div>
       </div>
       {PageType === "cartDropdownComponent" && (
-        <div className=" flex-none w-32  bg-tertiaire-white flex justify-between items-center px-3 py-2 gap-x-3">
+        <div className=" flex w-32  flex-none items-center justify-between gap-x-3 bg-tertiaire-white px-3 py-2">
           <span
             onClick={() => handleChangeQuantity("decrement")}
-            className=" opacity-50 cursor-pointer "
+            className=" cursor-pointer opacity-50 "
           >
             -
           </span>
           <span className=" text-sm"> {Item?.quantity} </span>
           <span
             onClick={() => handleChangeQuantity("increment")}
-            className=" opacity-50 cursor-pointer"
+            className=" cursor-pointer opacity-50"
           >
             +
           </span>

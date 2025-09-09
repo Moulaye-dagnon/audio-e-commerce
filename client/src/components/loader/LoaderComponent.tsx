@@ -48,8 +48,8 @@ const LoaderComponent: React.FC = () => {
   return (
     <div>
       {/* Background overlay */}
-      <div className="fixed w-full min-h-screen z-50 bg-black opacity-30">
-        <div className="flex fixed w-full justify-center items-center h-screen">
+      <div className="fixed z-50 min-h-screen w-full bg-black opacity-30">
+        <div className="fixed flex h-screen w-full items-center justify-center">
           {/* Loading animation */}
           <motion.div
             style={loadingContainer}

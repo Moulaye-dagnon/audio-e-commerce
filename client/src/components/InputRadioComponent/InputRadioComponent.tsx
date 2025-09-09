@@ -1,34 +1,57 @@
-import type { ChangeEventHandler } from "react";
+import type { MouseEventHandler } from "react";
+import type {
+  Path,
+  FieldValues,
+  UseFormRegister,
+  LiteralUnion,
+  RegisterOptions,
+  Ref,
+  MultipleFieldErrors,
+  Message,
+} from "react-hook-form";
 
-interface InputProps {
+export type FieldError = {
+  type: LiteralUnion<keyof RegisterOptions, string>;
+  root?: FieldError;
+  ref?: Ref;
+  types?: MultipleFieldErrors;
+  message?: Message;
+};
+interface InputProps<T extends FieldValues> {
   label: string;
-  name: string;
+  name: Path<T>;
   id: string;
   value: string | number;
-  handleChange?: ChangeEventHandler<HTMLInputElement>;
+  register: UseFormRegister<T>;
+  error: FieldError | undefined;
+  Onclick?: MouseEventHandler<HTMLInputElement> | undefined;
 }
 
-function InputRadioComponent({
+function InputRadioComponent<T extends FieldValues>({
   label,
   name,
   id,
   value,
-  handleChange,
-}: InputProps) {
+  register,
+  error,
+  Onclick,
+}: InputProps<T>) {
   return (
-    <div className="flex  justify-end items-center flex-row-reverse py-4.5 pl-6 border border-input-border hover:border-primary-orange rounded-md cursor-pointer caret-primary-orange">
-      <label htmlFor={id} className=" text-sm font-bold inline-block ml-4  ">
+    <div className="flex  cursor-pointer flex-row-reverse items-center justify-end rounded-md border border-input-border py-4.5 pl-6 caret-primary-orange hover:border-primary-orange">
+      <label htmlFor={id} className=" ml-4 inline-block text-sm font-bold  ">
         {label}
       </label>
       <input
         id={id}
-        name={name}
         type="radio"
         value={value}
-        onChange={handleChange}
-        required
+        {...register(name)}
+        onClick={Onclick}
         className=" accent-primary-orange"
       />
+      {error?.message && (
+        <small className=" bg-red-300 ">{error.message}</small>
+      )}
     </div>
   );
 }
