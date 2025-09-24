@@ -48,6 +48,7 @@ export const CartSlice = createSlice({
     ToggleCardAction: (state) => {
       state.hidden = !state.hidden;
     },
+   
   },
 });
 

@@ -8,6 +8,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { CheckoutSchema, type CheckoutType } from "../../Types/checkout.type";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FinalPriceFunct } from "../../utils/GetFinalPrice";
+import CheckOutSuccessComponent from "../../components/ChechoutSuccess/CheckOutSuccessComponent";
 
 function CheckOut() {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ function CheckOut() {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<CheckoutType>({
@@ -25,13 +28,12 @@ function CheckOut() {
     setModePaiment(type);
   };
   const OnSubmit: SubmitHandler<CheckoutType> = (data) => {
-    // await new Promise((resolver) => setTimeout(resolver, 1000));
     console.log(data);
+    reset();
   };
 
   const TotalCart = useAppSelector((state) => state.cart.carts);
-  console.log(errors);
-
+  const { FinalPrice, TVA, TotalItemsPrice } = FinalPriceFunct(TotalCart);
   return (
     <div className=" relative mt-10 bg-tertiaire-white px-6  py-4 md:px-10 lg:px-20 xl:px-40">
       <h3
@@ -42,9 +44,9 @@ function CheckOut() {
       </h3>
       <form
         onSubmit={handleSubmit(OnSubmit)}
-        className=" mx-auto flex max-w-[1440px] gap-y-8 max-lg:flex-col lg:gap-x-7.5 lg:gap-y-0"
+        className=" mx-auto flex max-w-[1440px] gap-y-8 max-lg:flex-col lg:gap-x-7.5 lg:gap-y-0  "
       >
-        <div className=" rounded-lg bg-primary-white px-6  py-4 text-left shadow-md lg:max-w-130 xl:max-w-172">
+        <div className=" rounded-lg bg-primary-white px-6 py-4 text-left  shadow-md lg:w-[65%]  lg:flex-none xl:max-w-172">
           <div className=" text-3xl font-bold uppercase">Facturation</div>
           <section className="my-8">
             <div className=" mb-4 text-sm font-bold text-primary-orange">
@@ -199,7 +201,7 @@ function CheckOut() {
             )}
           </section>
         </div>
-        <div className="flex max-w-90 flex-1 flex-col gap-y-8 rounded-lg bg-primary-white px-6 py-8 text-left shadow-md lg:max-h-160">
+        <div className="flex w-full flex-1 flex-col   gap-y-8 rounded-lg bg-primary-white px-6 py-8 text-left shadow-md lg:max-h-160 lg:w-[31%] lg:flex-none">
           <div className=" text-3xl font-bold uppercase ">Résumé</div>
           {TotalCart.length ? (
             <div className=" mb-4 flex h-72 w-full flex-col overflow-auto">
@@ -217,26 +219,26 @@ function CheckOut() {
               <span className=" text-base text-primary-black/50 uppercase">
                 Totale
               </span>
-              <span className="text-lg font-bold">$10000</span>
+              <span className="text-lg font-bold">${TotalItemsPrice}</span>
             </div>
             <div className=" mb-2.5 flex items-center justify-between">
               <span className=" text-base text-primary-black/50 uppercase">
                 EXPÉDITION
               </span>
-              <span className="text-lg font-bold">$10000</span>
+              <span className="text-lg font-bold">$50</span>
             </div>
             <div className=" mb-6 flex items-center justify-between">
               <span className=" text-base text-primary-black/50 uppercase">
                 TVA (inclus)
               </span>
-              <span className="text-lg font-bold">$10000</span>
+              <span className="text-lg font-bold">${TVA}</span>
             </div>
             <div className=" mb-2.5 flex items-center justify-between">
               <span className=" text-base text-primary-black/50 uppercase">
                 Grand Total
               </span>
               <span className="text-lg font-bold text-primary-orange">
-                $10000
+                ${FinalPrice}
               </span>
             </div>
           </div>
@@ -249,7 +251,7 @@ function CheckOut() {
           />
         </div>
       </form>
-      {/* {ConfirmAchat && <CheckOutSuccessComponent />} */}
+       {ConfirmAchat && <CheckOutSuccessComponent />} 
     </div>
   );
 }

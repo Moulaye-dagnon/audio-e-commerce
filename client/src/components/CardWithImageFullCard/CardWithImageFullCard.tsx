@@ -60,6 +60,7 @@ function CardWithImageFullCard({ title, url }: CardWithImageFullCardProps) {
         <h3 className=" mb-8 max-w-60 text-[28px]  font-bold text-primary-black uppercase">
           {title}
         </h3>
+		
         <ButtonComponent
           url={url ? url : undefined}
           type="button"

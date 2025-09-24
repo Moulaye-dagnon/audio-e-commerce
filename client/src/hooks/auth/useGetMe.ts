@@ -6,6 +6,7 @@ function useGetMe() {
     enabled: false,
     queryKey: ["user"],
     queryFn: () => getMe(),
+    retry: 0,
   });
 }
 

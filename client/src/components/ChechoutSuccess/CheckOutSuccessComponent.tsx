@@ -3,12 +3,15 @@ import { useAppSelector } from "../../redux/hooks";
 import CardItem from "../Card-Item-Component/CardItem";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { FinalPriceFunct } from "../../utils/GetFinalPrice";
 function CheckOutSuccessComponent() {
   const TotalCart = useAppSelector((state) => state.cart.carts);
+  const { FinalPrice } = FinalPriceFunct(TotalCart);
+
   const [dropdownProduct, setDropdownProduct] = useState(false);
 
   return (
-    <div className=" no-doc-scrool fixed  inset-x-0 bottom-0 z-10 flex items-center  justify-center bg-primary-black/40 px-6 pt-10 backdrop-blur-sm md:top-0">
+    <div className=" no-doc-scrool fixed  inset-0 bottom-0 z-10 flex items-center  justify-center bg-primary-black/40 px-6 pt-10 backdrop-blur-sm md:top-0">
       <div className="rounded-lg bg-primary-white p-8">
         <div>logo</div>
         <div className=" mb-4 text-2xl font-bold uppercase">
@@ -61,16 +64,18 @@ function CheckOutSuccessComponent() {
                 />
               )}
             </AnimatePresence>
-            <span
-              onClick={() => setDropdownProduct((prev) => !prev)}
-              className=" inline-block cursor-pointer py-3 text-center text-sm font-bold text-primary-black/50"
-            >
-              et {TotalCart.length - 1} autres article(s)
-            </span>
+            {TotalCart.length > 1 && (
+              <span
+                onClick={() => setDropdownProduct((prev) => !prev)}
+                className=" inline-block cursor-pointer py-3 text-center text-sm font-bold text-primary-black/50"
+              >
+                et {TotalCart.length - 1} autres article(s)
+              </span>
+            )}
           </motion.div>
-          <div className="   flex flex-col   justify-end gap-y-2 bg-primary-black px-6 py-4">
+          <div className="   flex flex-col   justify-center gap-y-2 bg-primary-black px-6 py-4">
             <span className="text-primary-white/50">GRAND TOTAL</span>
-            <span className="font-bold text-primary-white">1000</span>
+            <span className="font-bold text-primary-white">{FinalPrice}</span>
           </div>
         </div>
         <ButtonComponent

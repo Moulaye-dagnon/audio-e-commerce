@@ -58,7 +58,7 @@ export default function ButtonComponent({
           " bg-primary-white border border-primary-black text-primary-black hover:bg-primary-black hover:text-primary-white ":
             color == "black",
         },
-        "cursor-pointer px-8 py-4 "
+        "w-full cursor-pointer px-8 py-4 "
       )}
     >
       {name}

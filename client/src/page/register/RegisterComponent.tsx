@@ -8,7 +8,7 @@ export function RegisterComponent() {
   const {
     handleSubmit,
     register,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<RegisterType>();
 
   const navigate = useNavigate();
@@ -36,9 +36,9 @@ export function RegisterComponent() {
 
   return (
     <div>
-      <div className="max-w-[327px] md:max-w-[400px]  mx-auto bg-semi-dark-blue rounded-xl p-6 md:p-8">
+      <div className="mx-auto max-w-[327px]  rounded-xl bg-primary-white p-6 md:max-w-[400px] md:p-8">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-4xl  mb-4">Inscrivez-vous</h1>
+          <h1 className="mb-4  text-4xl">Inscrivez-vous</h1>
           <InputComponent<RegisterType>
             label="Nom"
             type="text"
@@ -46,6 +46,7 @@ export function RegisterComponent() {
             id="nom"
             register={register}
             placeholder={"Votre nom"}
+            error={errors.name}
           />
           <InputComponent<RegisterType>
             label="Email"
@@ -54,6 +55,7 @@ export function RegisterComponent() {
             id="email"
             register={register}
             placeholder={"Votre adresse email "}
+            error={errors.email}
           />
           <InputComponent<RegisterType>
             id="password"
@@ -62,6 +64,7 @@ export function RegisterComponent() {
             type={"password"}
             register={register}
             placeholder={"Mot de passe"}
+            error={errors.password}
           />
           <InputComponent<RegisterType>
             id="ConfirmPassword"
@@ -70,17 +73,20 @@ export function RegisterComponent() {
             name="ConfirmPassword"
             register={register}
             placeholder={"Confirmer Votre mot de passe"}
+            error={errors.ConfirmPassword}
           />
 
-          <ButtonComponent
-            name={isSubmitting ? "Creating..." : "Créer un compte"}
-            color="orange"
-            type="submit"
-            disabled={isSubmitting}
-          />
-          <p className="w-5/6 text-xm mx-auto">
+          <div className="w-full">
+            <ButtonComponent
+              name={isSubmitting ? "Creating..." : "Créer un compte"}
+              color="orange"
+              type="submit"
+              disabled={isSubmitting}
+            />
+          </div>
+          <p className="mx-auto w-5/6 text-xs">
             Déjà un compte?
-            <Link className=" inline-block ml-2 text-red" to={"/login"}>
+            <Link className="  inline-block text-primary-orange" to={"/login"}>
               Connectez-vous
             </Link>
           </p>

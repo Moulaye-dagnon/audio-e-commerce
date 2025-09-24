@@ -3,6 +3,7 @@ import {
   decremenentQuantityAction,
   incrementQuantityAction,
 } from "../../redux/Cart/CartSlice";
+import clsx from "clsx";
 
 function CardItem({
   id,
@@ -24,7 +25,15 @@ function CardItem({
   };
   return (
     <div className="my-1 flex h-28 w-full items-center justify-between first:mt-0 last:mb-0">
-      <div className="w-20">
+      <div
+        className={clsx(
+          {
+            "lg:w-15": PageType === "checkoutPage",
+            "lg:w-20": PageType !== "checkoutPage",
+          },
+          "w-20"
+        )}
+      >
         <img src={Item?.image.mobile} alt="" />
       </div>
       <div className=" flex  flex-1 flex-col items-start gap-y-2 px-4">
@@ -50,7 +59,7 @@ function CardItem({
       )}
 
       {PageType === "checkoutPage" && (
-        <div className="  bg-tertiaire-white px-3 py-2 ">
+        <div className="   px-3 py-2 ">
           x<span className=" text-sm"> {Item?.quantity} </span>
         </div>
       )}

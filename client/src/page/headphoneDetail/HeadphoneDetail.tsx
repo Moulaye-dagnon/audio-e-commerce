@@ -3,6 +3,7 @@ import useGetDetailHeadphone from "../../hooks/Headphone/useGetDetailHeadphone";
 import DetailProduitComponent from "../../components/DetailProduit/DetailProduitComponent";
 import { useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
+import LoaderComponent from "../../components/loader/LoaderComponent";
 
 function HeadphoneDetail() {
   const User = useAppSelector((state) => state.user.user);
@@ -11,7 +12,7 @@ function HeadphoneDetail() {
     if (!User) {
       navigate("/login", { state: { redirectFromCick: true } });
     }
-  });
+  }, [navigate, User]);
   const { slug } = useParams();
 
   const {
@@ -21,7 +22,7 @@ function HeadphoneDetail() {
     error,
   } = useGetDetailHeadphone({ slug });
 
-  if (isLoading) return <div>chargement......</div>;
+  if (isLoading) return <LoaderComponent />;
   if (isError) return <div>error {error?.message}</div>;
   if (item) return <DetailProduitComponent item={item} />;
 }

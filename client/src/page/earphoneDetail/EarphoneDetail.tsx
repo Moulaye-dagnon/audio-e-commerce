@@ -3,6 +3,7 @@ import useGetDetailEarphone from "../../hooks/Earphone/useGetDetailEarphone";
 import DetailProduitComponent from "../../components/DetailProduit/DetailProduitComponent";
 import { useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
+import LoaderComponent from "../../components/loader/LoaderComponent";
 
 function EarphoneDetail() {
   const User = useAppSelector((state) => state.user.user);
@@ -21,7 +22,7 @@ function EarphoneDetail() {
     error,
   } = useGetDetailEarphone({ slug });
 
-  if (isLoading) return <div>chargement......</div>;
+  if (isLoading) return <LoaderComponent />;
   if (isError) return <div>error {error?.message}</div>;
   if (item) return <DetailProduitComponent item={item} />;
 }

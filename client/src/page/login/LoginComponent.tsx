@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { InputComponent } from "../../components/InputComponent/InputComponent";
 import { Link, useLocation, useNavigate } from "react-router";
 import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
@@ -40,13 +40,12 @@ function LoginComponent() {
       },
 
       onError: (err: Error) => {
-        console.log(err.message	);
+        setError("root", err);
       },
     });
   };
-  useEffect(() => {
-    console.log(errors.root);
-  }, [setError, errors]);
+  console.log(location.state?.redirectFromCick);
+
   return (
     <div>
       <AnimatePresence>
@@ -56,7 +55,7 @@ function LoginComponent() {
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 1.5 }}
-            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded  relative"
+            className="relative rounded border border-red-400 bg-red-100 px-4 py-3  text-red-700"
             role="alert"
           >
             <strong className="font-bold">Ooohh! Desolé</strong>
@@ -65,10 +64,10 @@ function LoginComponent() {
             </span>
             <span
               onClick={() => setInfoLogin(false)}
-              className="absolute top-0 bottom-0 right-0 px-4 py-3"
+              className="absolute top-0 right-0 bottom-0 px-4 py-3"
             >
               <svg
-                className="fill-current h-6 w-6 text-red-500"
+                className="h-6 w-6 fill-current text-red-500"
                 role="button"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -80,16 +79,17 @@ function LoginComponent() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* {errors.root && <p>{errors.root}</p>} */}
-      <div className="max-w-[327px] md:max-w-[400px]  mx-auto bg-semi-dark-blue rounded-xl p-6 md:p-8">
+      {errors.root && <p>{errors.root.message}</p>}
+      <div className="mx-auto max-w-[327px]  rounded-xl bg-primary-white p-6 md:max-w-[400px] md:p-8">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-4xl  mb-4">Connectez-vous</h1>
+          <h1 className="mb-4  text-4xl">Connectez-vous</h1>
           <InputComponent<FormFilds>
             label="Email"
             type="email"
             name="email"
             id="email"
             register={register}
+            error={errors.email}
           />
           <InputComponent<FormFilds>
             label="Nom"
@@ -97,6 +97,7 @@ function LoginComponent() {
             type="password"
             id="password"
             register={register}
+            error={errors.password}
           />
 
           <ButtonComponent
@@ -109,7 +110,7 @@ function LoginComponent() {
           <p className="w-5/6 text-sm ">
             Pas de compte ?
             <Link
-              className=" underline  inline-block ml-2 text-primary-orange"
+              className=" ml-2  inline-block text-primary-orange underline"
               to={"/register"}
             >
               Inscrivez-vous

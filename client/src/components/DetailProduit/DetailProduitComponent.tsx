@@ -12,8 +12,7 @@ function DetailProduitComponent({
 }: {
   item: headPhoneEarPhoneSpeakerInterfaceDetail;
 }) {
-  //   const carts = useStoreCart((state) => state.carts);
-  //   const addToCart = useStoreCart((state) => state.addToCart);
+  
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
   const handleChangeQuantity = (action: "increment" | "decrement") => {
@@ -264,8 +263,6 @@ function DetailProduitComponent({
         </h4>
         <div className="mt-14 flex items-center justify-center gap-y-14 max-md:flex-col md:gap-x-2.5 md:gap-y-0 lg:gap-x-8">
           {item?.others.map((i) => {
-            console.log(i);
-
             return (
               <CardWithOnlyImageAndButton
                 url={item.slug}

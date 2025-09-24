@@ -3,8 +3,10 @@ import type { UserData } from "../../Types/User";
 
 const initialState: {
   user: UserData | undefined;
+  loading: boolean;
 } = {
   user: undefined,
+  loading: true,
 };
 
 export const UserSlice = createSlice({
@@ -13,6 +15,7 @@ export const UserSlice = createSlice({
   reducers: {
     addUser: (state, action: PayloadAction<UserData | undefined>) => {
       state.user = action?.payload;
+      state.loading = false;
     },
     removeUser: (state) => {
       state.user = undefined;

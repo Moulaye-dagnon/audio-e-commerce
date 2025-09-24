@@ -17,16 +17,15 @@ import LoginComponent from "./page/login/LoginComponent";
 import CheckOut from "./page/checkout/CheckOut";
 import NotFoundPage from "./page/NotFound/NotFoundPage";
 import { RegisterComponent } from "./page/register/RegisterComponent";
-import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { useAppDispatch } from "./redux/hooks";
 import { addUser } from "./redux/user/UserSlice";
 import { useEffect } from "react";
 import useGetMe from "./hooks/auth/useGetMe";
+import ProtectRoute from "./utils/ProtectRoute";
 
 function App() {
-  const User = useAppSelector((state) => state.user.user);
-
   const dispatch = useAppDispatch();
-  const { isSuccess, isError, refetch, data,  } = useGetMe();
+  const { isSuccess, isError, refetch, data } = useGetMe();
   useEffect(() => {
     refetch();
   }, []);
@@ -37,10 +36,7 @@ function App() {
     if (isError) {
       dispatch(addUser(undefined));
     }
-  }, [isSuccess, isError, data]);
-  //   console.log("loading", isLoading);
-
-  if (isSuccess) console.log(User);
+  }, [isSuccess, isError, data, dispatch]);
 
   const root = createBrowserRouter(
     createRoutesFromElements(
@@ -50,9 +46,30 @@ function App() {
           <Route path="headphone" element={<Headphone />} />
           <Route path="speaker" element={<Speaker />} />
           <Route path="earphone" element={<Earphone />} />
-          <Route path="headphone/:slug" element={<HeadphoneDetail />} />
-          <Route path="speaker/:slug" element={<SpeakerDetail />} />
-          <Route path="earphone/:slug" element={<EarphoneDetail />} />
+          <Route
+            path="headphone/:slug"
+            element={
+              <ProtectRoute>
+                <HeadphoneDetail />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="speaker/:slug"
+            element={
+              <ProtectRoute>
+                <SpeakerDetail />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="earphone/:slug"
+            element={
+              <ProtectRoute>
+                <EarphoneDetail />
+              </ProtectRoute>
+            }
+          />
           <Route path="checkout" element={<CheckOut />} />
         </Route>
         <Route path="/login" element={<LoginComponent />} />

@@ -5,14 +5,14 @@ function NotFoundPage() {
   console.error(error);
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex h-screen items-center justify-center">
         <div className="bg-white">
           <div className="flex flex-col items-center">
-            <h1 className="font-bold text-3xl text-blue-600 lg:text-6xl">
+            <h1 className="text-3xl font-bold text-blue-600 lg:text-6xl">
               404
             </h1>
 
-            <h6 className="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl">
+            <h6 className="mb-2 text-center text-2xl font-bold text-gray-800 md:text-3xl">
               <span className="text-red-500">Oops!</span> Page
               {(error as Error)?.message ||
                 (error as { statusText?: string })?.statusText}
@@ -24,7 +24,7 @@ function NotFoundPage() {
 
             <Link
               to="/"
-              className="px-5 py-2 rounded-md text-blue-100 bg-blue-600 hover:bg-blue-700"
+              className="rounded-md bg-blue-600 px-5 py-2 text-blue-100 hover:bg-blue-700"
             >
               Retourner à l'accueil
             </Link>

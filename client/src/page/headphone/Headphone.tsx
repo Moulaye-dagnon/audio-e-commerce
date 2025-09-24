@@ -4,13 +4,14 @@ import type { headPhoneEarPhoneSpeakerInterface } from "../../Types";
 import HeaderOverview from "../../components/HeaderOverview/HeaderOverview";
 import { useEffect } from "react";
 import { scrollUpFunct } from "../../utils/scrollUpFunct";
+import LoaderComponent from "../../components/loader/LoaderComponent";
 
 const Headphone = () => {
   const { isLoading, isError, data } = useGetHeadphones();
   useEffect(() => {
     scrollUpFunct();
   }, [data]);
-  if (isLoading) return <div>Chargement...</div>;
+  if (isLoading) return <LoaderComponent />;
   if (isError) return <div>error </div>;
   return (
     <>

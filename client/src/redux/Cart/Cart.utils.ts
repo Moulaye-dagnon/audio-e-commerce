@@ -1,8 +1,6 @@
 import type { CartItem } from "../../Types/cart.type";
 
 export function addToCart(cartItems: CartItem[], newItem: CartItem) {
-  console.log("Adding item to cart in function:", newItem.quantity);
-
   const updatedCart = cartItems.map((item) =>
     item.id === newItem.id
       ? { ...item, quantity: item.quantity + newItem.quantity }

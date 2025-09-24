@@ -34,7 +34,7 @@ function Home() {
     <>
       <HeaderOverview />
       <main className="px-6 md:px-10 lg:px-20 xl:px-40  ">
-        <div className=" my-16 rounded-lg bg-white w-full py-3 md:flex justify-between items-center gap-x-2.5 lg:gap-x-7.5">
+        <div className=" my-16 w-full items-center justify-between gap-x-2.5 rounded-lg bg-white py-3 md:flex lg:gap-x-7.5">
           <MenuItemCard
             title="Casque"
             imgScr={icon_headphone}
@@ -64,7 +64,7 @@ function Home() {
           title="Haut-parleur ZX7"
           url="/speaker/zx7-speaker"
         />
-        <div className=" relative flex max-md:flex-col gap-y-8 mb-30 md:gap-x-2.5 md:gap-y-0 lg:justify-between  ">
+        <div className=" relative mb-30 flex gap-y-8 max-md:flex-col md:gap-x-2.5 md:gap-y-0 lg:justify-between  ">
           <AnimatePresence>
             {isHover && (
               <motion.div
@@ -75,11 +75,11 @@ function Home() {
                 transition={{
                   duration: 1,
                 }}
-                className=" fixed top-0 left-0 inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-black/60"
+                className=" fixed inset-0 top-0 left-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md"
               >
                 <div
                   onMouseLeave={() => setHover(false)}
-                  className=" cursor-pointer peer lg:flex-none lg:w-[49.5%]"
+                  className=" peer cursor-pointer lg:w-[49.5%] lg:flex-none"
                 >
                   <picture>
                     <source
@@ -93,7 +93,7 @@ function Home() {
                       sizes=""
                     />
                     <img
-                      className=" rounded-lg w-full  "
+                      className=" w-full rounded-lg  "
                       src={image_earphone_mobile}
                       alt="person for mobile"
                     />
@@ -104,7 +104,7 @@ function Home() {
           </AnimatePresence>
           <div
             onClick={() => setHover(true)}
-            className=" cursor-pointer overflow-hidden lg:flex-none lg:w-[49.5%]"
+            className=" cursor-pointer overflow-hidden lg:w-[49.5%] lg:flex-none"
           >
             <picture>
               <source
@@ -125,7 +125,7 @@ function Home() {
                 whileHover={{
                   scale: 1.5,
                 }}
-                className=" rounded-lg w-full  "
+                className=" w-full rounded-lg  "
                 src={image_earphone_mobile}
                 alt="person for mobile"
               />
@@ -136,11 +136,12 @@ function Home() {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="lg:flex-none lg:w-[49.5%] w-full pl-6 lg:pl-25 bg-tertiaire-white rounded-lg py-10 md:flex md:flex-col md:justify-center md:items-start"
+            className="w-full rounded-lg bg-tertiaire-white py-10 pl-6 md:flex md:flex-col md:items-start md:justify-center lg:w-[49.5%] lg:flex-none lg:pl-25"
           >
-            <h3 className=" text-[28px] max-w-60 font-bold  text-primary-black mb-8 uppercase">
+            <h3 className=" mb-8 max-w-60 text-[28px]  font-bold text-primary-black uppercase">
               Écouteurs YX1
             </h3>
+
             <ButtonComponent
               url="/earphone/yx1-earphones"
               type="button"

@@ -2,18 +2,19 @@ import { motion, type Transition } from "motion/react"; // ✅ Corriger l'import
 
 const LoaderComponent: React.FC = () => {
   const loadingContainer: React.CSSProperties = {
-    width: "4rem",
-    height: "4rem",
+    width: "3rem",
+    height: "3rem",
     display: "flex",
     justifyContent: "space-around",
+    columnGap: "5px",
   };
 
   const loadingCircle: React.CSSProperties = {
     display: "block",
-    width: "1rem",
-    height: "1rem",
-    backgroundColor: "#3A36DB",
-    borderRadius: "0.5rem",
+    width: "5rem",
+    height: "5rem",
+    backgroundColor: "#f1f1f1",
+    borderRadius: "0",
   };
 
   const loadingContainerVariants = {
@@ -48,7 +49,7 @@ const LoaderComponent: React.FC = () => {
   return (
     <div>
       {/* Background overlay */}
-      <div className="fixed z-50 min-h-screen w-full bg-black opacity-30">
+      <div className="  no-doc-scrool min-h-screen w-full bg-secondary-black opacity-30">
         <div className="fixed flex h-screen w-full items-center justify-center">
           {/* Loading animation */}
           <motion.div

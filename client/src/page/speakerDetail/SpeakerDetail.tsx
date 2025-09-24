@@ -3,6 +3,7 @@ import useGetDetailSpeaker from "../../hooks/Speaker/useGetDetailSpeaker";
 import DetailProduitComponent from "../../components/DetailProduit/DetailProduitComponent";
 import { useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
+import LoaderComponent from "../../components/loader/LoaderComponent";
 
 function SpeakerDetail() {
   const User = useAppSelector((state) => state.user.user);
@@ -21,7 +22,7 @@ function SpeakerDetail() {
     error,
   } = useGetDetailSpeaker({ slug });
 
-  if (isLoading) return <div>chargement......</div>;
+  if (isLoading) return <LoaderComponent />;
   if (isError) return <div>error {error?.message}</div>;
   if (item) return <DetailProduitComponent item={item} />;
 }

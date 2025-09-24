@@ -2,11 +2,7 @@ import person_mobile from "../../assets/shared/mobile/image-best-gear.jpg";
 import person_tablet from "../../assets/shared/tablet/image-best-gear.jpg";
 import person_desktop from "../../assets/shared/desktop/image-best-gear.jpg";
 import { motion } from "motion/react";
-// interface CardWithImagePersonProps {
-//   title: string;
-//   description: string;
-//   imgScr: string;
-// }
+
 
 function CardWithImagePerson() {
   return (
