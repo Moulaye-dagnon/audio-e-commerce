@@ -34,14 +34,14 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
   });
 }
-app.all("/api/auth/:splat*", (req, res) => {
-  console.log(`🔐 BetterAuth handling: ${req.method} ${req.url}`);
-  console.log("🔐 Request body:", req.body);
-  authHandle(req, res).catch((err) => {
-    console.error("BetterAuth handler error:", err);
-    res.status(500).json({ error: "Internal auth error" });
-  });
-});
+// app.all("/api/auth/:splat*", (req, res) => {
+//   console.log(`🔐 BetterAuth handling: ${req.method} ${req.url}`);
+//   console.log("🔐 Request body:", req.body);
+//   authHandle(req, res).catch((err) => {
+//     console.error("BetterAuth handler error:", err);
+//     res.status(500).json({ error: "Internal auth error" });
+//   });
+// });
 
 app.use(express.json());
 
