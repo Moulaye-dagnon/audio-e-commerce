@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
   });
 }
-app.all("/api/auth/*", (req, res) => {
+app.all("/api/auth{/*splat}", (req, res) => {
   console.log(`🔐 BetterAuth handling: ${req.method} ${req.url}`);
   console.log("🔐 Request body:", req.body);
   authHandle(req, res).catch((err) => {
