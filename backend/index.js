@@ -26,14 +26,14 @@ app.use(
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // Trust proxy for accurate IP addresses
-app.set("trust proxy", 1);
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/client/dist")));
+// app.set("trust proxy", 1);
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "/client/dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+//   });
+// }
 // app.all("/api/auth/:splat*", (req, res) => {
 //   console.log(`🔐 BetterAuth handling: ${req.method} ${req.url}`);
 //   console.log("🔐 Request body:", req.body);
