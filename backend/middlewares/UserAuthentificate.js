@@ -1,5 +1,5 @@
 const auth = require("../lib/auth");
-const {fromNodeHeaders} = require("better-auth/node");
+const { fromNodeHeaders } = require("better-auth/node");
 //import { fromNodeHeaders } from "better-auth/node";
 module.exports = async (req, res, next) => {
   try {
@@ -9,8 +9,8 @@ module.exports = async (req, res, next) => {
     if (!session) {
       res.status(401).json({ error: "Authentication est requie" });
     }
-    req.user = session.user;
-    req.session = session.session;
+    req.user = session?.user;
+    req.session = session?.session;
     next();
   } catch (error) {
     console.log(error);
