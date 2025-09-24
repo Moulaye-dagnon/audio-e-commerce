@@ -26,7 +26,7 @@ app.use(
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // Trust proxy for accurate IP addresses
-// app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static(path.join(__dirname, "/client/dist")));
 
@@ -34,14 +34,14 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 //     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
 //   });
 // }
-// app.all("/api/auth/:splat*", (req, res) => {
-//   console.log(`🔐 BetterAuth handling: ${req.method} ${req.url}`);
-//   console.log("🔐 Request body:", req.body);
-//   authHandle(req, res).catch((err) => {
-//     console.error("BetterAuth handler error:", err);
-//     res.status(500).json({ error: "Internal auth error" });
-//   });
-// });
+app.all("/api/auth/{*splat}", (req, res) => {
+  console.log(`🔐 BetterAuth handling: ${req.method} ${req.url}`);
+  console.log("🔐 Request body:", req.body);
+  authHandle(req, res).catch((err) => {
+    console.error("BetterAuth handler error:", err);
+    res.status(500).json({ error: "Internal auth error" });
+  });
+});
 
 app.use(express.json());
 
