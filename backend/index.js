@@ -49,6 +49,6 @@ app.use("", authRoute);
 app.use("", usersRoute);
 
 const port = process.env.PORT || 3000;
-app.listen(port, (req, res) => {
+app.listen(port, () => {
   console.log(`Votre server est lancé sur le port ${port}`);
 });
