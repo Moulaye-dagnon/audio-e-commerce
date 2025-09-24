@@ -13,6 +13,9 @@ const Speaker = require("./routes/Speaker");
 const getHeaders = require("./utils/getHeaders");
 const authRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
+const port = process.env.PORT || 3000;
+console.log(port);
+
 app.use(
   cors({
     credentials: true,
@@ -48,7 +51,6 @@ app.use("", Speaker);
 app.use("", authRoute);
 app.use("", usersRoute);
 
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Votre server est lancé sur le port ${port}`);
 });
