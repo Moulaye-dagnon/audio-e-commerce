@@ -22,6 +22,17 @@ const auth = betterAuth({
       maxAge: 5 * 60,
     },
   },
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+    },
+    defaultCookieAttributes: {
+      sameSite: "none",
+      secure: true,
+    },
+    useSecureCookies: process.env.NODE_ENV === "production",
+  },
+
   trustedOrigins: [
     "http://localhost:5173",
     "https://moulaye-audio-e-commerce.vercel.app",
