@@ -4,7 +4,7 @@ const getUser = (req, res) => {
     res.status(401).json({ error: "User not authenticated" });
     return;
   }
-  res.status(200).json({
+  return res.status(200).json({
     message: "Data user",
     user: user,
   });
