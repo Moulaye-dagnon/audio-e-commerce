@@ -7,13 +7,13 @@ module.exports = async (req, res, next) => {
       headers: fromNodeHeaders(req.headers),
     });
     if (!session) {
-      res.status(401).json({ error: "Authentication est requie" });
+      return res.status(401).json({ error: "Authentication est requie" });
     }
     req.user = session?.user;
     req.session = session?.session;
     next();
   } catch (error) {
     console.log(error);
-    res.status(401).json({ error: "Invalid session" });
+    return res.status(401).json({ error: "Invalid session" });
   }
 };
