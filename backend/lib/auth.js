@@ -23,10 +23,10 @@ const auth = betterAuth({
     },
   },
   advanced: {
-    crossSubDomainCookies: {
-      enabled: true,
-      domain: process.env.COOKIE_DOMAIN || undefined,
-    },
+    // crossSubDomainCookies: {
+    //   enabled: true,
+    //   domain: process.env.COOKIE_DOMAIN || undefined,
+    // },
     defaultCookieAttributes: {
       sameSite: "none",
       secure: true,
