@@ -18,7 +18,10 @@ console.log(port);
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:5173"],
+    origin: [
+      "http://localhost:5173",
+      "https://moulaye-audio-e-commerce.vercel.app",
+    ],
   })
 );
 
