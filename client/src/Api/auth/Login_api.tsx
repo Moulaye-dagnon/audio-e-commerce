@@ -14,6 +14,8 @@ async function Login_api({
       email,
       password,
     });
+    console.log(response.data);
+
     return response.data;
   } catch (error) {
     const a = error as AxiosError<{

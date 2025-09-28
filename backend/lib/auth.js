@@ -22,7 +22,10 @@ const auth = betterAuth({
       maxAge: 5 * 60,
     },
   },
-  trustedOrigins: ["http://localhost:5173"],
+  trustedOrigins: [
+    "http://localhost:5173",
+    "https://moulaye-audio-e-commerce.vercel.app",
+  ],
 });
 
 module.exports = auth;

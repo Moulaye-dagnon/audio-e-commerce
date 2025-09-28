@@ -44,7 +44,6 @@ function LoginComponent() {
       },
     });
   };
-  console.log(location.state?.redirectFromCick);
 
   return (
     <div>
