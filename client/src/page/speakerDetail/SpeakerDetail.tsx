@@ -1,18 +1,17 @@
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import useGetDetailSpeaker from "../../hooks/Speaker/useGetDetailSpeaker";
 import DetailProduitComponent from "../../components/DetailProduit/DetailProduitComponent";
-import { useAppSelector } from "../../redux/hooks";
-import { useEffect } from "react";
+
 import LoaderComponent from "../../components/loader/LoaderComponent";
 
 function SpeakerDetail() {
-  const User = useAppSelector((state) => state.user.user);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!User) {
-      navigate("/login", { state: { redirectFromCick: true } });
-    }
-  });
+  //   const User = useAppSelector((state) => state.user.user);
+  //   const navigate = useNavigate();
+  //   useEffect(() => {
+  //     if (!User) {
+  //       navigate("/login", { state: { redirectFromCick: true } });
+  //     }
+  //   });
   const { slug } = useParams();
 
   const {

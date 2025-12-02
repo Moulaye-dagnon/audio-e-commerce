@@ -46,31 +46,17 @@ function App() {
           <Route path="headphone" element={<Headphone />} />
           <Route path="speaker" element={<Speaker />} />
           <Route path="earphone" element={<Earphone />} />
+          <Route path="headphone/:slug" element={<HeadphoneDetail />} />
+          <Route path="speaker/:slug" element={<SpeakerDetail />} />
+          <Route path="earphone/:slug" element={<EarphoneDetail />} />
           <Route
-            path="headphone/:slug"
+            path="checkout"
             element={
               <ProtectRoute>
-                <HeadphoneDetail />
+                <CheckOut />
               </ProtectRoute>
             }
           />
-          <Route
-            path="speaker/:slug"
-            element={
-              <ProtectRoute>
-                <SpeakerDetail />
-              </ProtectRoute>
-            }
-          />
-          <Route
-            path="earphone/:slug"
-            element={
-              <ProtectRoute>
-                <EarphoneDetail />
-              </ProtectRoute>
-            }
-          />
-          <Route path="checkout" element={<CheckOut />} />
         </Route>
         <Route path="/login" element={<LoginComponent />} />
         <Route path="/register" element={<RegisterComponent />} />

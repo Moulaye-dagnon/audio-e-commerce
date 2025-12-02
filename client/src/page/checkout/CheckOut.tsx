@@ -6,13 +6,20 @@ import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
 import { useNavigate } from "react-router";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { CheckoutSchema, type CheckoutType } from "../../Types/checkout.type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FinalPriceFunct } from "../../utils/GetFinalPrice";
 import CheckOutSuccessComponent from "../../components/ChechoutSuccess/CheckOutSuccessComponent";
 
 function CheckOut() {
   const navigate = useNavigate();
+
+  const User = useAppSelector((state) => state.user.user);
+  useEffect(() => {
+    if (!User) {
+      navigate("/login", { state: { redirectFromCick: true } });
+    }
+  });
   const [modePaiment, setModePaiment] = useState<"e-Money" | "cash">("cash");
   const [ConfirmAchat, setConfirmAchat] = useState(false);
 
@@ -251,7 +258,7 @@ function CheckOut() {
           />
         </div>
       </form>
-       {ConfirmAchat && <CheckOutSuccessComponent />} 
+      {ConfirmAchat && <CheckOutSuccessComponent />}
     </div>
   );
 }
