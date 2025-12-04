@@ -47,6 +47,10 @@ app.all("/api/auth/{*splat}", (req, res) => {
 
 app.use(express.json());
 
+app.get("/uptime", (req, res) => {
+  console.log("just keep my free server alive");
+  res.send("Just keep my free server alive");
+});
 app.use("", Headphone);
 app.use("", EarPhone);
 app.use("", Speaker);
